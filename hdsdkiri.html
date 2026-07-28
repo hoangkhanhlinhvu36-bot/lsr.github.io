@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn KIRI Engine - Lân Sư Rồng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Khung so sánh 2D và 3D */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia làm 2 cột bằng nhau */
+    gap: 20px;
+    margin: 30px auto;
+    max-width: 1000px;
+}
+
+.comparison-item {
+    background: white;
+    padding: 10px;
+    border: 1px solid #eee;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comparison-item img, 
+.comparison-item iframe {
+    width: 100%;
+    height: 400px; /* Chiều cao cố định để hai bên bằng nhau */
+    object-fit: contain; /* Đảm bảo ảnh 2D không bị méo */
+    border-radius: 4px;
+}
+
+.comparison-label {
+    margin-top: 10px;
+    font-weight: bold;
+    font-family: var(--f-title);
+    color: var(--c-accent);
+}
+
+/* Hỗ trợ hiển thị trên điện thoại */
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr; /* Chuyển thành 1 cột trên mobile */
+    }
+    .comparison-item iframe, 
+    .comparison-item img {
+        height: 300px;
+    }
+}
+        /* Navbar & Navigation */
+.navbar {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 15px 0; background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 3px solid var(--ht-cerise); /* Viền đỏ Hàng Trống */
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--f-title); font-size: 1.6rem; font-weight: 900; color: var(--ht-cerise); text-decoration: none; letter-spacing: 1px; }
+
+.nav-menu { display: flex; gap: 20px; list-style: none; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--ht-dark-blue); transition: 0.3s; }
+.nav-link:hover { color: var(--ht-cerise); }
+
+/* Dropdown Menu */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 100%; right: 0; background: white;
+    min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 2px solid var(--ht-blue); padding: 10px 0; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: 0.3s; list-style: none;
+}
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu a { display: block; padding: 10px 20px; text-decoration: none; color: var(--ht-dark-blue); font-size: 0.9rem; border-bottom: none !important; }
+.dropdown-menu a:hover { background: var(--ht-paper); color: var(--ht-cerise); }
+        :root {
+            --c-black: #192338;
+            --c-ink: #002615;
+            --c-paper: #f9f9f7;
+            --c-accent: #8b0000;
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 0; background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-title); font-size: 1.5rem; font-weight: 700; color: var(--c-black); text-decoration: none; }
+        
+        .page-header { margin-top: 120px; text-align: center; padding-bottom: 60px; }
+        .page-header h1 { font-family: var(--f-title); font-size: 2.8rem; color: var(--c-black); line-height: 1.2; margin-bottom: 15px; text-transform: uppercase; }
+
+        .guide-section { margin-bottom: 60px; }
+        .step-title { font-family: var(--f-title); font-size: 1.8rem; color: var(--c-accent); margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        
+        .download-link { color: var(--c-accent); text-decoration: none; transition: 0.3s; }
+        .download-link:hover { opacity: 0.7; text-decoration: underline; }
+
+        .sub-section { margin-top: 35px; }
+        .sub-title { font-family: var(--f-title); font-size: 1.5rem; margin-bottom: 20px; color: var(--c-black); display: flex; align-items: center; gap: 10px; }
+        .sub-title::before { content: "✦"; color: var(--c-accent); font-size: 1rem; }
+
+        .tips-box { background: #fdfaf5; padding: 30px; border-left: 5px solid var(--c-accent); margin: 25px 0; font-style: italic; }
+        
+        /* ĐIỀU CHỈNH KÍCH THƯỚC ẢNH NHỎ LẠI */
+        .img-container { margin: 30px 0; text-align: center; }
+        .img-frame { 
+            background: white; 
+            padding: 8px; 
+            border: 1px solid #eee; 
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.03); 
+            display: inline-block; 
+            max-width: 600px; /* Giới hạn chiều rộng ảnh đơn */
+            width: 100%;
+        }
+        .img-frame img { width: 100%; height: auto; display: block; }
+        
+        .img-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            margin: 30px 0; 
+            max-width: 800px; /* Giới hạn chiều rộng của lưới ảnh */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Đảm bảo ảnh trong lưới không bị quá to */
+        .img-grid .img-frame { max-width: 100%; }
+
+        ul { list-style: none; padding-left: 20px; }
+        li { position: relative; }
+        li strong { color: var(--c-black); }
+
+        .footer-note { text-align: center; font-style: italic; color: #666; margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
+
+        /* Mobile Toggle Icon */
+        .nav-toggle { display: none; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
+
+        footer { background: #000; color: #777; padding: 40px 0; text-align: center; font-size: 0.9rem; margin-top: 80px; }
+        
+        .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 1s forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background-color: var(--c-paper);
+                flex-direction: column; align-items: flex-start; justify-content: flex-start;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1); 
+                transition: right 0.4s ease;
+                padding: 80px 30px 100px 30px; 
+                overflow-y: auto;
+                gap: 0;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; z-index: 1001; }
+            
+            .nav-item-dropdown { 
+                width: 100%; 
+            }
+            .nav-link { font-size: 1.1rem; }
+            
+            .dropdown-menu {
+                position: static; opacity: 1; visibility: visible; 
+                transform: none; box-shadow: none; border: none;
+                background: transparent; min-width: 100%;
+                max-height: 0; overflow: hidden; padding: 0;
+                transition: max-height 0.4s ease; margin-top: 0;
+            }
+            
+            .nav-item-dropdown.open .dropdown-menu { 
+                max-height: 500px; 
+                margin-top: 10px; 
+            }
+            .nav-item-dropdown.open .nav-link i { transform: rotate(180deg); }
+
+            .dropdown-menu a {
+                padding-left: 15px;      
+                font-size: 1rem;         
+                background-color: rgba(0,0,0,0.03); 
+                border-bottom: 1px dashed rgba(0,0,0,0.05); 
+                border-left: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr; /* Chuyển thành 1 cột trên mobile */
+            }
+            .comparison-item iframe, 
+            .comparison-item img {
+                height: 300px;
+            }
+            .page-header { margin-top: 100px; padding: 40px 0 30px; }
+            .page-header h1 { font-size: 2.2rem; }
+            .container { padding: 0 15px; }
+            .step-title { font-size: 1.5rem; }
+            .img-frame { max-width: 100%; }
+            p { font-size: 0.95rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.2rem; }
+            .page-header { margin-top: 80px; padding: 30px 0 20px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .container { padding: 0 12px; }
+            .step-title { font-size: 1.2rem; }
+            .comparison-item iframe, 
+            .comparison-item img {
+                height: 250px;
+            }
+            .nav-menu { width: 90%; max-width: 300px; padding: 70px 20px 80px; }
+            .nav-link { font-size: 1rem; }
+            p { font-size: 0.9rem; }
+            .img-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+        
+        <div class="nav-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li><a class="nav-link" href="duan.html">Dự án</a></li>
+            
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Lân Sư Rồng <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                    <li><a href="taohinh.html">Tạo hình</a></li>
+                    <li><a href="giaothoa (1).html">Giao thoa</a></li>
+                    <li><a href="giaoduc.html">Giáo dục</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Trải Nghiệm <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                    <li><a href="flipaclip.html">Phim hoạt hình và tranh</a></li>
+                    <li><a href="chatbot.html">Trợ lý AI</a></li>
+                </ul>
+            </li>
+
+            <li><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+            <li><a class="nav-link" href="about.html">Về chúng mình</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div style="height: 80px;"></div>
+
+    <header class="page-header container fade-up">
+        <h1>MÔ HÌNH 3D ĐẦU LÂN</h1>
+        <p>Xây dựng và thiết kế mô hình 3D cho di sản Lân Sư Rồng</p>
+    </header>
+
+    <main class="container">
+        <section class="guide-section fade-up">
+    <h2 class="step-title">So sánh Bản vẽ 2D & Mô hình 3D</h2>
+    
+    <div class="comparison-grid">
+        <div class="comparison-item">
+            <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769327808/Kh%C3%B4ng_C%C3%B3_Ti%C3%AAu_%C4%90%E1%BB%81141_20260125145337_atqoia.jpg" alt="Bản vẽ 2D Đầu Lân">
+            <p class="comparison-label">Phác thảo 2D</p>
+        </div>
+
+        <div class="comparison-item">
+            <iframe 
+                src="https://www.kiriengine.app/share/shareModel/3e5c2298ae58440a8ae3459e308fc460" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+            <p class="comparison-label">Mô hình 3D lân Hạc Sơn</p>
+        </div>
+    </div>
+    
+    <p class="footer-note" style="text-align: center;">Với khả năng xoay, phóng to, thu nhỏ mô hình 3D, chúng mình hy vọng đi sâu và rộng hơn trong việc số hóa các vật phẩm quan trọng của nghệ thuật, tạo nên một không gian số nhằm bảo tồn nghệ thuật</p>
+</section>
+
+<section><strong><h1>Chúng mình hy vọng với những dẫn dắt dưới đây có thể hỗ trợ các bạn số hóa các vật phẩm khác nhau để xây dựng một không gian cá nhân trải nghiệm nghệ thuật Lân Sư Rồng</h1></strong></section>
+        <section class="guide-section fade-up">
+            <h2 class="step-title">Bước 1: Tải ứng dụng</h2>
+            <a href="https://www.kiriengine.app/" target="_blank" class="download-link">
+                <h2><strong>Tải app tại đây</strong></h2>
+            </a>
+        </section>
+
+        <section class="guide-section fade-up">
+            <h2 class="step-title">Bước 2: Chuẩn bị ảnh chụp của bạn</h2>
+            <div class="sub-section">
+                <h3 class="sub-title">1. Nghệ thuật lựa chọn vật thể</h3>
+                <p>Bí quyết của một bản quét thành công nằm ở bề mặt vật thể.</p>
+                <ul style="margin-top: 15px;">
+                    <li><strong>Ưu tiên:</strong> Những vật thể có kết cấu bề mặt phong phú, thô ráp hoặc nhiều chi tiết tự nhiên.</li>
+                    <li><strong>Hạn chế:</strong> Những vật thể trơn nhẵn, đơn sắc, hoặc phản chiếu và trong suốt.</li>
+                </ul>
+                
+
+            <div class="sub-section">
+                <h3 class="sub-title">2. Quy trình ghi hình chuyên nghiệp</h3>
+                <div class="img-container">
+                    <div class="img-frame">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769091101/z7458049984417_7ea5c1deb041d386376458fdf5551a7b_h7nzqk.jpg" alt="Quy trình ghi hình">
+                    </div>
+                </div>
+                <p class="footer-note">Sau khi hoàn tất, bạn chỉ cần đưa ảnh vào Drive và gửi lên ứng dụng.</p>
+            </div>
+        </section>
+
+        <section class="guide-section fade-up">
+            <h2 class="step-title">Bước 3: Chọn tiêu chuẩn đầu ra</h2>
+            <div class="img-container">
+                <div class="img-frame">
+                    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773767924/z7631191740650_4cfef2c384cc01074e1e7315b7e08e42_rewe7i.jpg" alt="Đầu ra 3D">
+                </div>
+            </div>
+            <p class="footer-note">Ở bước này bạn chỉ cần đặt tên của mô hình, định dạng theo nhu cầu của bản thân và để hệ thống hoàn tất sản phẩm thôi.</p>
+        </section>
+        <section class="guide-section fade-up text-center" style="margin-top: 50px; text-align: center;">
+    <button class="btn-folk" onclick="window.location.href='chatbot.html'" style="padding: 15px 40px; background-color: #8b0000; color: white; border: none; border-radius: 50px; cursor: pointer; font-family: 'Lora', serif; font-weight: 700; text-transform: uppercase;">
+        Trợ lý Ảo
+    </button>
+</section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dự án Bảo tồn Nghệ thuật Lân Sư Rồng.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Toggle Dropdown on Mobile
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const parent = toggle.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo Dục - Nghệ Thuật Lân Sư Rồng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Navbar & Navigation */
+.navbar {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 15px 0; background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 3px solid var(--ht-cerise); /* Viền đỏ Hàng Trống */
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--f-title); font-size: 1.6rem; font-weight: 900; color: var(--ht-cerise); text-decoration: none; letter-spacing: 1px; }
+
+.nav-menu { display: flex; gap: 20px; list-style: none; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--ht-dark-blue); transition: 0.3s; }
+.nav-link:hover { color: var(--ht-cerise); }
+
+/* Dropdown Menu */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 100%; right: 0; background: white;
+    min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 2px solid var(--ht-blue); padding: 10px 0; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: 0.3s; list-style: none;
+}
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu a { display: block; padding: 10px 20px; text-decoration: none; color: var(--ht-dark-blue); font-size: 0.9rem; border-bottom: none !important; }
+.dropdown-menu a:hover { background: var(--ht-paper); color: var(--ht-cerise); }
+        :root {
+            --c-black: #192338;
+            --c-ink: #200000;
+            --c-paper: #f9f9f7;
+            --c-accent: #8b0000; /* Màu đỏ thẫm truyền thống */
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Texture giấy cũ giống trang Nguồn Gốc */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* Navbar đồng bộ */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 0; background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-title); font-size: 1.5rem; font-weight: 700; color: var(--c-black); text-decoration: none; }
+        .nav-menu { display: flex; gap: 25px; list-style: none; }
+        .nav-link { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; color: var(--c-ink); }
+        .nav-link:hover, .active { color: var(--c-accent); font-weight: 700; }
+
+        /* Header Section */
+        .page-header { margin-top: 120px; text-align: center; padding-bottom: 60px; }
+        .page-header h1 { font-family: var(--f-title); font-size: 4rem; color: var(--c-black); margin-bottom: 10px; }
+        .page-header p { font-style: italic; color: #666; font-size: 1.2rem; }
+
+        /* Content Layout */
+        .main-content { margin-bottom: 100px; }
+        .section-block { margin-bottom: 80px; position: relative; }
+        .section-title { 
+            font-family: var(--f-title); font-size: 2.2rem; margin-bottom: 30px; 
+            display: flex; align-items: center; gap: 15px; color: var(--c-accent);
+        }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: #ddd; }
+
+        /* Grid for cards */
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .edu-card { 
+            background: white; padding: 40px; border: 1px solid #eee;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.02); transition: 0.3s;
+        }
+        .edu-card:hover { transform: translateY(-5px); box-shadow: 15px 15px 0px rgba(139, 0, 0, 0.05); }
+        .edu-card i { font-size: 2rem; color: var(--c-accent); margin-bottom: 20px; display: block; }
+        .edu-card h3 { font-family: var(--f-title); font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px solid var(--c-accent); display: inline-block; }
+
+        /* Special Quote Block */
+        .summary-box {
+            background-color: var(--c-black); color: white; padding: 60px;
+            text-align: center; position: relative; margin-top: 50px;
+        }
+        .summary-box h2 { font-family: var(--f-title); font-size: 2.5rem; margin-bottom: 20px; }
+        .summary-box p { font-size: 1.2rem; max-width: 800px; margin: 0 auto; opacity: 0.9; }
+
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile Toggle Icon */
+        .nav-toggle { display: none; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
+
+        footer { background: #000; color: #777; padding: 40px 0; text-align: center; font-size: 0.9rem; }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background-color: var(--c-paper);
+                flex-direction: column; align-items: flex-start; justify-content: flex-start;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1); 
+                transition: right 0.4s ease;
+                padding: 80px 30px 100px 30px; 
+                overflow-y: auto;
+                gap: 0;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; z-index: 1001; }
+            
+            .nav-item-dropdown { 
+                width: 100%; 
+            }
+            .nav-link { font-size: 1.1rem; }
+            
+            .dropdown-menu {
+                position: static; opacity: 1; visibility: visible; 
+                transform: none; box-shadow: none; border: none;
+                background: transparent; min-width: 100%;
+                max-height: 0; overflow: hidden; padding: 0;
+                transition: max-height 0.4s ease; margin-top: 0;
+            }
+            
+            .nav-item-dropdown.open .dropdown-menu { 
+                max-height: 500px; 
+                margin-top: 10px; 
+            }
+            .nav-item-dropdown.open .nav-link i { transform: rotate(180deg); }
+
+            .dropdown-menu a {
+                padding-left: 15px;      
+                font-size: 1rem;         
+                background-color: rgba(0,0,0,0.03); 
+                border-bottom: 1px dashed rgba(0,0,0,0.05); 
+                border-left: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header { margin-top: 100px; padding: 40px 0 30px; }
+            .page-header h1 { font-size: 2.5rem; }
+            .container { padding: 0 15px; }
+            .section-title { font-size: 1.8rem; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .edu-card { padding: 25px; }
+            p { font-size: 0.95rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.2rem; }
+            .page-header { margin-top: 80px; padding: 30px 0 20px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .container { padding: 0 12px; }
+            .section-title { font-size: 1.5rem; }
+            .edu-card { padding: 20px; }
+            .nav-menu { width: 90%; max-width: 300px; padding: 70px 20px 80px; }
+            .nav-link { font-size: 1rem; }
+            p { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+        
+        <div class="nav-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li><a class="nav-link" href="duan.html">Dự án</a></li>
+            
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)"> Lân Sư Rồng <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                    <li><a href="taohinh.html">Tạo hình</a></li>
+                    <li><a href="giaothoa (1).html">Giao thoa</a></li>
+                    <li><a href="giaoduc.html">Giáo dục</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Trải Nghiệm <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                    <li><a href="flipaclip.html">Phim hoạt hình và tranh</a></li>
+                    <li><a href="chatbot.html">Trợ lý AI</a></li>
+                </ul>
+            </li>
+
+            <li><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+            <li><a class="nav-link" href="about.html">Về chúng mình</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div style="height: 80px;"></div>
+
+    <header class="page-header container fade-up">
+        <h1>GIÁO DỤC</h1>
+        <p>Lân Sư Rồng không chỉ là vũ điệu, đó là một ngôi trường rèn luyện nhân cách.</p>
+    </header>
+
+    <main class="container">
+        
+        <section class="section-block fade-up">
+            <h2 class="section-title">Đạo đức và Nhân cách</h2>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <i class="fa-solid fa-scroll"></i>
+                    <h3>Trung - Nghĩa - Nhân</h3>
+                    <p>Việc tạo hình lân dựa trên các nhân vật lịch sử như Ngũ hổ tướng giúp người học tiếp cận với lòng "trung và nghĩa" của Quan Vũ, sự đức độ của Lưu Bị. Hình tượng Kỳ Lân còn biểu trưng cho lòng nhân từ, không bao giờ giẫm đạp lên côn trùng hay cỏ xanh.</p>
+                </div>
+                <div class="edu-card">
+                    <i class="fa-solid fa-eye"></i>
+                    <h3>Hướng Thiện</h3>
+                    <p>Trong nghi thức "Khai quang điểm nhãn", các bước mang ý nghĩa giáo dục sâu sắc: chấm mắt để thấy điều thiện, chấm tai để nghe lời hay lẽ phải, và chấm miệng để nói lời cát tường, tạo nên một tâm thế sống tích cực.</p>
+                </div>
+                <div class="edu-card">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    <h3>Khiêm Cung</h3>
+                    <p>Võ đạo dạy tinh thần "tôn sư trọng tổ". Các luật ngầm như lân trẻ chào lân cũ, cấm kỵ vuốt râu khiêu khích đối phương dạy cho môn sinh sự kính trọng tiền bối và thái độ cư xử chuẩn mực trong xã hội.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-block fade-up">
+            <h2 class="section-title">Ý chí và Nghị lực (Khổ luyện)</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <p>Để trở thành một nghệ sĩ thực thụ, người học phải trải qua quá trình rèn luyện vô cùng khắc nghiệt, nơi mồ hôi và kỷ luật trui rèn nên bản lĩnh.</p>
+                    <ul style="list-style: none; margin-top: 20px;">
+                        <li style="margin-bottom: 15px;"><strong>• Sự kiên trì:</strong> Khổ luyện với bao cát, tạ xích (thạch tỏa), vòng sắt để đôi chân vững như bàn thạch và đôi tay linh hoạt.</li>
+                        <li style="margin-bottom: 15px;"><strong>• Kỷ luật (Mã bộ):</strong> Tấn pháp là nền tảng. Tấn có vững thì mới có thể nâng đồng đội trên vai, tượng trưng cho việc chuẩn bị nền tảng vững vàng trong mọi sự nghiệp ở đời.</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 300px; background: #eee; padding: 40px; border-radius: 2px; font-style: italic;">
+                    "Một phút thăng hoa trên mai hoa thung là kết quả của mười năm đứng tấn dưới nắng mưa. Nghệ thuật này dạy ta rằng không có thành công nào thiếu đi sự chuẩn bị."
+                </div>
+            </div>
+        </section>
+
+        <section class="section-block fade-up">
+            <h2 class="section-title">Tinh thần Tập thể & Sự gắn kết</h2>
+            <div class="edu-grid">
+                <div class="edu-card" style="border-left: 5px solid var(--c-accent);">
+                    <h3>Sự Đồng Bộ</h3>
+                    <p>Đặc biệt trong múa Rồng, cần từ 6 đến hơn 20 người cùng nhịp thở. Nếu không có sự ăn khớp, linh vật sẽ rời rạc. Đây là bài học lớn về việc đặt cái "Tôi" vào cái "Ta" chung.</p>
+                </div>
+                <div class="edu-card" style="border-left: 5px solid var(--c-accent);">
+                    <h3>Hỗ trợ Đồng môn</h3>
+                    <p>Các ám hiệu như tiếng la "tích", "chí" giúp môn sinh nhận ra nhau để hỗ trợ kịp thời khi gặp khó khăn trên sân khấu cũng như trong cuộc sống, thắt chặt tình nghĩa huynh đệ.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-block fade-up">
+            <h2 class="section-title">Ý nghĩa Nhân văn & Bảo tồn</h2>
+            <div style="background: white; padding: 40px; border: 1px solid #ddd;">
+                <p><strong>Hướng nghiệp và Cưu mang:</strong> Nhiều đoàn lân (như Hằng Anh Đường) đóng vai trò là "mái nhà chung", nuôi dưỡng những đứa trẻ lang thang, giúp các em có một nghề nghiệp và hướng đi thiện lương.</p>
+                <hr style="margin: 20px 0; opacity: 0.2;">
+                <p><strong>Ý thức cội nguồn:</strong> Thông qua hình tượng con Rồng cháu Tiên, nghệ thuật này nhắc nhở thế hệ trẻ về nguồn gốc dân tộc, niềm tự hào và trách nhiệm bảo tồn bản sắc văn hóa giữa kỷ nguyên số.</p>
+            </div>
+        </section>
+        <section class="section-block fade-up text-center" style="margin-top: 50px; text-align: center;">
+    <button class="btn-folk" onclick="window.location.href='giaothoa (1).html'" style="padding: 15px 40px; background-color: #8b0000; color: white; border: none; border-radius: 50px; cursor: pointer; font-family: 'Lora', serif; font-weight: 700; text-transform: uppercase;">
+        Tiếp tục đến sự giao thoa
+    </button>
+</section>
+    </main>
+
+    <section class="summary-box fade-up">
+        <div class="container">
+            <h2>Đúc Kết</h2>
+            <p>Tóm lại, Lân Sư Rồng không chỉ là rèn luyện thân thể qua võ thuật, mà còn là một môi trường giáo dục toàn diện về <strong>Trí - Đức - Thể - Mỹ</strong>, tạo nên những con người có tâm sáng, lòng bền và ý chí sắt đá.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dự án Bảo tồn Nghệ thuật Lân Sư Rồng TP.HCM. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Toggle Dropdown on Mobile
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const parent = toggle.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

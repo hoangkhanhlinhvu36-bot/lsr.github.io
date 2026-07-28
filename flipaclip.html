@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoạt Hình & FlipaClip - Giáo Dục Di Sản</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    /* Căn giữa tiêu đề quy trình */
+.guide-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung theo chiều ngang */
+    margin-bottom: 80px;
+}
+
+.section-title {
+    width: 100%;
+    max-width: 800px; /* Giới hạn độ rộng để tiêu đề không quá dài */
+    text-align: left; /* Giữ tiêu đề lùi lề trái có vạch vàng như thiết kế cũ */
+    margin-bottom: 40px;
+}
+
+/* Căn giữa các thẻ Step Card */
+.step-card {
+    background: var(--c-white);
+    padding: 40px;
+    margin: 0 auto 40px auto; /* Margin auto trái/phải để căn giữa */
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px rgba(0, 107, 118, 0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex; 
+    gap: 40px; 
+    align-items: flex-start;
+    max-width: 850px; /* Khống chế độ rộng để card không bị bè ra hai bên */
+    width: 100%;
+}
+
+/* Căn giữa các hình ảnh trong bước */
+.step-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Căn giữa các ảnh bên trong */
+    gap: 20px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.step-images .reference-item {
+    margin: 0 !important; /* Ghi đè margin cũ để flexbox điều khiển */
+    flex: 1 1 300px; /* Cho phép co giãn nhưng tối thiểu 300px */
+    max-width: 400px;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .step-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center; /* Căn giữa chữ trên mobile */
+        padding: 20px;
+    }
+    
+    .step-number {
+        margin-bottom: 10px;
+    }
+    
+    .custom-list {
+        text-align: left; /* Giữ list căn lề trái để dễ đọc */
+        display: inline-block;
+    }
+}
+        .reference-item {
+    display: block;
+    width: 90%; /* Co giãn theo màn hình */
+    max-width: 600px; /* Không quá to trên máy tính */
+    margin: 30px auto !important; /* Luôn căn giữa */
+    clear: both; /* Không cho phép văn bản trôi xung quanh gây lệch */
+    overflow: hidden;
+}
+
+.reference-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+        /* Container chứa toàn bộ phần chú thích dưới ảnh */
+.caption-container {
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    text-align: left; /* Căn lề trái để đọc nội dung dài dễ hơn */
+}
+
+/* Tiêu đề chú thích */
+.caption-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #D9381E; /* Màu đỏ chủ đạo của dự án */
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+/* Nội dung mô tả chi tiết */
+.caption-text {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Dòng ghi chú hướng dẫn nhấn vào ảnh */
+.caption-note {
+    display: block;
+    font-size: 0.85rem;
+    color: #006B76; /* Màu xanh teal của dự án */
+    font-style: italic;
+    text-align: center;
+    border-top: 1px dashed #ddd;
+    padding-top: 8px;
+}
+/* Lớp phủ toàn màn hình */
+.lightbox-overlay {
+    display: none; /* Mặc định ẩn */
+    position: fixed; /* Cố định với màn hình, không trượt theo trang */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Nền đen mờ */
+    z-index: 99999; /* Đảm bảo nằm trên cùng */
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+/* Ảnh khi phóng to */
+.lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    /* Loại bỏ mọi margin/padding có thể gây lệch */
+    margin: 0; 
+}
+
+/* Nút đóng (X) */
+.close-btn-fix {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn-fix {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+        /* Khung chứa ảnh tư liệu trong bài viết */
+.reference-item {
+    max-width: 600px; /* Giới hạn chiều rộng để không quá lớn */
+    margin: 20px auto;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    cursor: zoom-in; /* Hiển thị biểu tượng kính lúp khi di chuột */
+    transition: 0.3s;
+}
+
+.reference-item:hover {
+    border-color: var(--ht-yellow);
+    transform: translateY(-3px);
+}
+
+.reference-item img {
+    width: 100%; /* Ảnh tự co giãn theo khung 600px */
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Lightbox - Lớp phủ xem ảnh kích thước gốc */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+.lightbox-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+        /* Lightbox nền tối */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+/* Ảnh phóng to */
+.lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain; /* Giữ nguyên tỉ lệ ảnh gốc */
+    border: 2px solid var(--ht-yellow);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .lightbox img {
+        max-width: 100%;
+        max-height: auto;
+        border: none;
+    }
+}
+        /* Navbar & Navigation */
+.navbar {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 15px 0; background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 3px solid var(--ht-cerise); /* Viền đỏ Hàng Trống */
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--f-title); font-size: 1.6rem; font-weight: 900; color: var(--ht-cerise); text-decoration: none; letter-spacing: 1px; }
+
+.nav-menu { display: flex; gap: 20px; list-style: none; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--ht-dark-blue); transition: 0.3s; }
+.nav-link:hover { color: var(--ht-cerise); }
+
+/* Dropdown Menu */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 100%; right: 0; background: white;
+    min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 2px solid var(--ht-blue); padding: 10px 0; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: 0.3s; list-style: none;
+}
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu a { display: block; padding: 10px 20px; text-decoration: none; color: var(--ht-dark-blue); font-size: 0.9rem; border-bottom: none !important; }
+.dropdown-menu a:hover { background: var(--ht-paper); color: var(--ht-cerise); }
+        /* =========================================
+           COPY TỪ INDEX.HTML (ĐỂ ĐỒNG BỘ)
+           ========================================= */
+        :root {
+            --c-red: #D9381E;      
+            --c-yellow: #FFC107;   
+            --c-teal: #006B76;     
+            --c-ink: #1a1a1a;      
+            --c-paper: #F9F7F2;    
+            --c-white: #ffffff;
+            
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+            
+            --trans-med: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-card: 0 10px 30px rgba(0, 107, 118, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--trans-med); }
+        ul { list-style: none; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
+
+        /* NAVBAR STYLE (Đồng bộ Index) */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background-color: rgba(253, 251, 247, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-top: 5px solid var(--c-red);
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { 
+            font-family: var(--f-title); font-size: 1.8rem; font-weight: 800; 
+            color: var(--c-red); text-transform: uppercase; letter-spacing: 1px;
+        }
+        .nav-menu { display: flex; gap: 30px; align-items: center; height: 100%; }
+        .nav-item { position: relative; height: 100%; display: flex; align-items: center; }
+        .nav-link {
+            font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--c-ink); transition: var(--trans-med); padding: 5px 0;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .nav-link:hover { color: var(--c-red); }
+        .submenu {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--c-white); min-width: 240px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-top: 3px solid var(--c-yellow);
+            opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 10px 0;
+        }
+        .nav-item:hover .submenu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .submenu li a { padding: 12px 25px; font-size: 0.95rem; color: #555; display: block; border-left: 3px solid transparent; }
+        .submenu li a:hover { background-color: #fafafa; color: var(--c-teal); border-left-color: var(--c-teal); padding-left: 30px; }
+        .nav-toggle { display: none; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
+
+        /* =========================================
+           PAGE SPECIFIC STYLES
+           ========================================= */
+        
+        .page-header { margin-top: 100px; text-align: center; margin-bottom: 50px; }
+        .page-category { 
+            display: inline-block; padding: 5px 15px; 
+            border: 1px solid var(--c-teal); color: var(--c-teal);
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px;
+        }
+        .page-title { 
+            font-family: var(--f-title); font-size: 3rem; color: var(--c-ink); margin-bottom: 20px; line-height: 1.2; 
+        }
+
+        /* Video Section */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border: 4px solid var(--c-white);
+            margin-bottom: 60px;
+        }
+        .video-wrapper video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* Step Section */
+        .guide-section { margin-bottom: 80px; }
+        .section-title {
+            font-family: var(--f-title); font-size: 2.2rem; color: var(--c-red);
+            margin-bottom: 40px; position: relative; padding-left: 20px;
+            border-left: 5px solid var(--c-yellow);
+        }
+
+        .step-card {
+            background: var(--c-white);
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+            box-shadow: 5px 5px 0px rgba(0, 107, 118, 0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex; gap: 40px; align-items: flex-start;
+        }
+        
+        .step-number {
+            font-family: var(--f-title); font-size: 4rem; font-weight: 800;
+            color: rgba(217, 56, 30, 0.15); line-height: 0.8;
+            min-width: 60px;
+        }
+
+        .step-content h3 {
+            font-family: var(--f-title); font-size: 1.5rem; color: var(--c-teal); margin-bottom: 15px;
+        }
+
+        .step-images {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;
+        }
+        .step-img-frame {
+            border: 1px solid #ddd; padding: 5px; background: white;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+        }
+        .step-img-frame img { width: 100%; height: auto; display: block; }
+
+        /* Highlight Boxes */
+        .school-box {
+            background-color: #e0f2f1; /* Xanh nhạt */
+            padding: 40px; border-radius: 8px; margin-bottom: 40px;
+            border-left: 5px solid var(--c-teal);
+        }
+        
+        .tips-box {
+            background-color: #fff8e1; /* Vàng nhạt */
+            padding: 40px; border-radius: 8px;
+            border-left: 5px solid var(--c-yellow);
+        }
+
+        .box-title { font-family: var(--f-title); font-size: 1.8rem; margin-bottom: 20px; color: var(--c-ink); }
+        
+        ul.custom-list { list-style: none; }
+        ul.custom-list li { position: relative; padding-left: 25px; margin-bottom: 10px; }
+        ul.custom-list li::before { 
+            content: "✦"; position: absolute; left: 0; color: var(--c-red); 
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--c-teal); color: rgba(255,255,255,0.8);
+            padding: 80px 0 30px; position: relative;
+        }
+        footer::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(to right, var(--c-red), var(--c-yellow), var(--c-white));
+        }
+        .footer-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 40px; }
+        .footer-logo { color: var(--c-yellow); font-family: var(--f-title); font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.85rem; }
+
+        /* Animation */
+        .reveal { opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .step-card { flex-direction: column; gap: 20px; }
+            .page-title { font-size: 2rem; }
+            .footer-content { grid-template-columns: 1fr; }
+            .nav-item:hover .submenu {
+                transform: none;
+            }
+        }
+
+        /* Mobile Menu (Copy Index) */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background-color: var(--c-paper); flex-direction: column; align-items: flex-start;
+                justify-content: flex-start; box-shadow: -5px 0 20px rgba(0,0,0,0.1); 
+                transition: right 0.4s ease; padding: 80px 30px 100px; overflow-y: auto;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; }
+            .nav-item { width: 100%; height: auto; display: block; margin-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; }
+            .nav-link { font-size: 1.1rem; justify-content: space-between; }
+            .submenu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; background: transparent; min-width: 100%; max-height: 0; overflow: hidden; padding: 0; transition: max-height 0.4s ease; }
+            .nav-item.open .submenu { max-height: 1000px; margin-top: 10px; }
+            .nav-item.open .nav-link i { transform: rotate(180deg); }
+            .submenu li a { padding-left: 15px; padding-top: 15px; padding-bottom: 15px; background-color: rgba(0,0,0,0.03); border-bottom: 1px dashed rgba(0,0,0,0.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+              
+            <div class="nav-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="duan.html">Dự án</a></li>
+                
+                <li class="nav-item has-submenu">
+                    <a class="nav-link" href="javascript:void(0)" style="color: var(--c-red);">Trải nghiệm <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                        <li><a href="flipaclip.html" style="color: var(--c-teal); font-weight: 700;">Phim hoạt hình và tranh</a></li>
+                        <li><a href="chatbot.html">Trợ lý ảo AI</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-submenu">
+                    <a class="nav-link" href="javascript:void(0)">Lân Sư Rồng <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                        <li><a href="taohinh.html">Tạo hình</a></li>
+                        <li><a href="giaothoa (1).html">Giao thoa</a></li>
+                        <li><a href="giaoduc.html">Giáo dục</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Về chúng mình</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <header class="page-header reveal">
+            <span class="page-category">Góc Sáng Tạo</span>
+            <h1 class="page-title">Kể chuyện về Lân <br> bằng tranh</h1>
+            <p style="font-style: italic; color: #666;">Sẽ như thê nào khi thế giới của Lân được thể hiện qua tranh vẽ? </p>
+        </header>
+        <section class="guide-section reveal">
+    <h1 class="reference-title">Khi vẽ tranh không đơn thuần chỉ là đưa nét vẽ lên giấy</h1>
+    <p>Chúng mình đã suy nghĩ rất nhiều để làm sao đưa một bộ nghệ thuật trình diễn công phu như múa Lân Sư Rồng vào chiếc điện thoại cá nhân, hay chiếc máy tính để lưu giữ, trân trọng những giá trị truyền thống.<br> Đồng thời, chúng mình mong muốn có thể đưa nghệ thuật đi sâu hơn vào cuộc sống thường ngày, được nhiều người biết đến hơn với vai trò là một bộ môn nghệ thuật sở hữu giá trị văn hóa, lịch sử phong phú để bảo tồn, phát triển. <br>       Từ suy nghĩ đó, tranh 2D, phức tạp hơn là phim hoạt hình, các mô hình 3D đã trở thành phương tiện đi cùng chúng mình trên hành trình giữ gìn và sáng tạo, phát huy nghệ thuật.</p>
+    <p>     Vậy thì, sau khi được biết thêm về nguồn gốc, ý nghĩa giáo dục, sự giao thoa và tạo hình nhân vật của nghệ thuật, mọi người hãy cùng chúng mình di qua những bức tranh sau, xem chúng muốn kể câu chuyện gì nhé!
+    <div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769228918/Kh%C3%B4ng_C%C3%B3_Ti%C3%AAu_%C4%90%E1%BB%81140_20260124111922_qkk6jq.jpg" alt="Hướng dẫn vẽ đầu Lân Phật Sơn">
+    
+    <div class="caption-container">
+        <h3 class="caption-title">Đây là cách mình vẽ đầu Lân Phật Sơn (Hổ báo hình)</h3>
+        
+        <p class="caption-text">
+            Đây là cách vẽ đơn giản và phù hợp với nhiều dáng hình Lân nhất. Chúng ta đã học qua ở trang nguồn gốc rồi, bạn nhớ nhé, Lân Phật Sơn có chiếc mỏ dãnh đặc trưng, chuyên thực hiện các bài múa Địa Bửu với tấn pháp và võ công vô cùng cao cường.
+        </p>
+        
+        <span class="caption-note">
+            <i class="fas fa-search-plus"></i> Nhấn vào ảnh để xem kích thước gốc
+        </span>
+    </div>
+</div>
+
+<div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040219/Th%C6%B0_vi%E1%BB%87n_04_czvwxw.jpg" alt="Các loại lân phổ biến trong loại hình">
+    
+    <div class="caption-container">
+        <h3 class="caption-title">Đây là cách chúng mình phân biệt Lân Bắc và Lân Nam như thế nào cho những dự án sau này</h3>
+        
+        <p class="caption-text">
+             Về cơ bản, ta có thể chia múa Lân ra làm hai loại, múa Lân Phật Sơn, Hạc Sơn và múa Sư tử là một trong ba kiểu múa Lân - Sư - Rồng như ta vẫn hay được nghe. Ở Trung Quốc, người ta cũng phân biệt giữa hai thể loại múa Nam Sư (Quảng Đông) bao gồm Phật Sơn và Hạc Sơn và Bắc Sư (Bắc Kinh) chỉ múa Sư tử, để ghi nhớ về nguồn gốc sản sinh ra nghệ thuật.
+             Để phân biệt Phật Sơn và Hạc Sơn, dễ nhất là trong ảnh Lân Hạc Sơn có mỏ tròn và trông thoải mái, dễ chịu hơn Phật Sơn rất nhiều.
+             Vì vậy, Hạc Sơn chuyên về múa Mai hoa thung(biểu diễn trên cột cao).
+            </p>
+        
+        <span class="caption-note">
+            <i class="fas fa-search-plus"></i> Nhấn vào ảnh để xem kích thước gốc
+        </span>
+    </div>
+</div>
+
+   <div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040219/2938e00a3200a2e7f056cd67be60c96b_oh0uno.jpg" alt="Ý nghĩa của múa Lân">
+    
+    <div class="caption-container">
+        <h3 class="caption-title">Múa Lân mang lại sự may mắn, thịnh vượng trong tâm hồn của người xem Lân</h3>
+        
+        <p class="caption-text">
+             Như bạn đã thấy đó, múa Lân có thể xuất hiện nhiều dịp quan trọng khác nhau, điều này cũng khẳng định người xem múa Lân với tâm thế mong cầu sự may mắn, thịnh vượng trong cuộc sống.
+            </p>
+        
+        <span class="caption-note">
+            <i class="fas fa-search-plus"></i> Nhấn vào ảnh để xem kích thước gốc
+        </span>
+    </div>
+</div>
+    
+   <div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040219/Th%C6%B0_vi%E1%BB%87n_02_qw0po0.jpg" alt="Các buổi biểu diễn múa Lân">
+    
+    <div class="caption-container">
+        <h3 class="caption-title">Một số tiết mục múa Lân tiêu biểu mà tụi mình chắc chắn bạn đã từng xem qua</h3>
+        
+        <p class="caption-text">
+             Như chúng ta đã được xem qua phim họa hình ngắn kết chữ "Chuyện của Niên", Linh Chi Thảo hay cải thao là vật quan trọng giúp con Niên từ dữ dằn trở thành một loài thú thân thiện với con người. Từ nguồn gốc câu chuyện mà sau này chúng ta hay được xem Lân nhai rau cải cột với bao lì xì màu đỏ, như một cách để cầu tài lộc cho người xem Lân
+            </p>
+        
+        <span class="caption-note">
+            <i class="fas fa-search-plus"></i> Nhấn vào ảnh để xem kích thước gốc
+        </span>
+    </div>
+</div>
+    
+
+  <div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040220/Th%C6%B0_vi%E1%BB%87n_mops67.jpg" alt="Lưu ý khi tương tác với Lân">
+    
+    <div class="caption-container">
+        <h3 class="caption-title">Một số lưu ý nhỏ để giúp cho trải nghiệm xem múa Lân của bạn tốt hơn</h3>
+        
+        <p class="caption-text">
+             Qua các tranh, tụi tui hy vọng có thể giúp các bạn không bị lúng túng hay ngại ngùng khi tiếp xúc với Lân. Vì dù sao Lân cũng là người mà.
+            </p>
+        
+        <span class="caption-note">
+            <i class="fas fa-search-plus"></i> Nhấn vào ảnh để xem kích thước gốc
+        </span>
+    </div>
+</div>
+
+   <div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040219/Th%C6%B0_vi%E1%BB%87n_03_fxdtjj.jpg" alt="Lưu ý khi tương tác với Lân">
+    
+    <div class="caption-container">
+        <h3 class="caption-title">Một số lưu ý nhỏ để giúp cho trải nghiệm xem múa Lân của bạn tốt hơn</h3>
+        
+        <p class="caption-text">
+             Xem múa Lân cũng có một số quy tắc mà chúng ta cần nhớ, chẳng hạn như ở Sừng và Gương trên đầu Lân đã được nhắc đến ở trang Tạo hình đầu Lân, tất cả đều là những vật mang nhiều ý nghĩa tâm linh sâu sắc, sờ hay chạm vào là điều không nên.
+            </p>
+        
+        <span class="caption-note">
+            <i class="fas fa-search-plus"></i> Nhấn vào ảnh để xem kích thước gốc
+        </span>
+    </div>
+</div>
+
+    <div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040220/584f01215566eee5f91222d4365b568c_cuxsp2.jpg" alt="Nhân vật phụ">
+    
+    <div class="caption-container">
+        <h3 class="caption-title">Cùng với Lân, các nhân vật khác trong buổi biểu diễn cũng giữ vị trí rất quan trọng</h3>
+        
+        <p class="caption-text">
+            Ông Địa (Đại Đầu Phật) hay chú tiểu là các nhân vật giữ vai trò mua vui và chỉ đường dẫn lỗi cho Lân đi, điều này cũng tương đồng với hình ảnh Ông Địa thuần phục Lân làm thú cưỡi ở tích xưa
+            Dàn nhạc cụ (trong hình lần lượt từ trái qua là chập chõa, trống Lân, chiêng) phối hợp với nhau để tạo ra các nhịp mở, dẫn và kết cho bài múa và mang ý nghĩa xua đuổi tà ma, mang lại điều tích cục.
+        </p>
+        
+        <span class="caption-note">
+            <i class="fas fa-search-plus"></i> Nhấn vào ảnh để xem kích thước gốc
+        </span>
+    </div>
+</div>
+</section>
+
+
+<h1><strong>Từ tranh 2D đến phim hoạt hình - Nâng cấp <br>trải nghiệm sinh động hơn</strong></h1>
+
+<p>Khác với tranh 2D, làm phim hoạt hình đòi hỏi tụi mình phải kiên nhẫn và tập trung quan sát từng cử chỉ, hành động khác nhau của cùng một nhân vật, điều này cũng tạo cơ hội để tụi mình xem biểu diễn, vẽ phác thảo nhiều hơn. Nhờ vậy mà tụi mình có thêm một phương diện mới để gìn giữ và phát huy nghệ thuật. Và đây là cách tụi mình đã biến những bức tranh tĩnh thành động này:</p>
+
+
+
+
+     <section class="guide-section reveal" style="animation-delay: 0.4s;">
+    <h2 class="section-title">Quy Trình 5 Bước của tụi mình</h2>
+
+    <div class="step-card">
+        <div class="step-number">01</div>
+        <div class="step-content">
+            <h3>Vẽ phác thảo storyboard</h3>
+            <div class="reference-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769042873/z7455266006738_961ba14f97977cc7010573685e8277e0_edruab.jpg" alt="Storyboard">
+            </div>
+            <ul class="custom-list">
+                <li><strong>Storyboard là gì?</strong> Là bản vẽ phác thảo sơ lược các cảnh quay giúp tiết kiệm thời gian và định hình kịch bản hình ảnh.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">02</div>
+        <div class="step-content">
+            <h3>Khởi tạo dự án</h3>
+            <ul class="custom-list">
+                <li><strong>Tạo mới:</strong> Nhấn dấu (+) để bắt đầu thiết lập tên và nền.</li>
+                <li><strong>Thông số:</strong> Chọn kích thước phù hợp và FPS (khuyên dùng 12 FPS).</li>
+            </ul>
+            <div class="step-images">
+                <div class="step-img-frame">
+                    <p style="text-align:center">Trang chủ</p>
+                    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773702060/z7627786146608_cab7c94dd8d0402df6a8c8cfa87524f6_zq2y7s.jpg" onclick="openLightbox(this.src)">
+                </div>
+                <div class="step-img-frame">
+                    <p style="text-align:center">Cài đặt</p>
+                    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773702060/z7627786140439_ce49bde6abee40743ff392def8735355_zei7vv.jpg" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">03</div>
+        <div class="step-content">
+            <h3>Sử dụng bộ công cụ vẽ</h3>
+            <p>Giao diện gồm: Bút vẽ, Tẩy, Lasso (di chuyển), Thùng sơn và Văn bản.</p>
+            <div class="step-images">
+                <div class="step-img-frame">
+                    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773702060/z7627786144044_7b5a7ad7b1d36757024a86fbbf6dfadc_xp2kfr.jpg" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">04</div>
+        <div class="step-content">
+            <h3>Diễn họa (Animation)</h3>
+            <ul class="custom-list">
+                <li>Vẽ hình đầu tiên ở Frame 1 và thêm Frame mới ở Timeline.</li>
+                <li><strong>Mẹo:</strong> Bật <em>Onion Skin</em> để thấy bóng mờ của hình trước, giúp chuyển động mượt mà hơn.</li>
+            </ul>
+            <div class="step-images">
+                <div class="step-img-frame">
+                    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773702060/z7627786146336_43f4f2da4993352b40673e455eca4554_ghqtpy.jpg" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">05</div>
+        <div class="step-content">
+            <h3>Hoàn thiện & Xuất bản</h3>
+            <ul class="custom-list">
+                <li><strong>Lớp (Layers):</strong> Tách biệt "Nền" và "Nhân vật" để dễ chỉnh sửa.</li>
+                <li><strong>Âm thanh:</strong> Chèn nhạc trống lân hoặc ghi âm lồng tiếng.</li>
+                <li><strong>Xuất video:</strong> Chọn Make Movie -> MP4 để lưu và chia sẻ.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+        <section class="reveal" style="animation-delay: 0.6s;">
+
+            <div class="tips-box">
+                <h3 class="box-title"><i class="fas fa-lightbulb"></i> Mẹo cho phim hay hơn</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                    <div>
+                        <strong>1. Kịch bản phân cảnh (Storyboard):</strong><br>
+                        Phác thảo sơ lược các cảnh ra giấy trước khi vẽ trên máy để tiết kiệm thời gian.
+                    </div>
+                    <div>
+                        <strong>2. Tận dụng Copy & Paste:</strong><br>
+                        Nếu nhân vật chỉ chớp mắt, hãy copy khung hình cũ và chỉ vẽ lại đôi mắt để nét vẽ ổn định.
+                    </div>
+                    <div>
+                        <strong>3. Sử dụng Bút cảm ứng:</strong><br>
+                        Dùng bút stylus sẽ giúp nét vẽ chi tiết và chuyên nghiệp hơn nhiều so với vẽ tay.
+                    </div>
+                </div>
+            </div>
+        </section>
+     
+        <section><strong><h2>Và đó là cách tụi mình đưa nghệ thuật Lân Sư Rồng vào những trang phim hoạt hình được số hóa này</h2></strong></section>
+    
+    <section class="reveal text-center" style="margin-top: 50px; text-align: center; padding-bottom: 50px;">
+    <button class="btn-folk" onclick="window.location.href='hdsdkiri.html'" style="padding: 15px 40px; background-color: #D9381E; color: white; border: none; border-radius: 50px; cursor: pointer; font-family: 'Lora', serif; font-weight: 700; text-transform: uppercase;">
+        Chặng tiếp theo: Mô hình 3D
+    </button>
+</section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">LÂN SƯ RỒNG</div>
+                    <p>Dự án số hóa và bảo tồn nghệ thuật biểu diễn truyền thống tại TP. Hồ Chí Minh.</p>
+                </div>
+                <div>
+                    <h4>Liên Hệ</h4>
+                    <p><i class="fas fa-envelope"></i> hoangkhanhlinhvu36@gmail.com</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                        Hợp tác nội dung và bảo trợ chuyên môn:<br>
+                        Liên đoàn Lân Sư Rồng Thành phố Hồ Chí Minh
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="copyright">
+                &copy; 2025 Lion Dragon Heritage Education. Designed with <span style="color: var(--c-yellow)">Oriental Soul</span>.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ========================
+           MOBILE MENU LOGIC (COPY TỪ INDEX)
+           ======================================== */
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const dropdownToggles = document.querySelectorAll('.has-submenu > .nav-link');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) { 
+                    e.preventDefault(); 
+                    const parent = toggle.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+
+        /* Reveal Animation */
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('load', revealOnScroll);
+        window.addEventListener('scroll', revealOnScroll);
+        /* Hàm mở Lightbox xem ảnh kích thước gốc */
+function openLightbox(src) {
+    const overlay = document.getElementById('lightboxOverlay');
+    const fullImg = document.getElementById('fullResImage');
+    overlay.style.display = 'flex';
+    fullImg.src = src;
+    document.body.style.overflow = 'hidden'; // Khóa cuộn trang khi xem ảnh
+}
+
+/* Hàm đóng Lightbox */
+function openLightbox(src) {
+    const overlay = document.getElementById('lightboxOverlay');
+    const fullImg = document.getElementById('fullResImage');
+    
+    fullImg.src = src;
+    overlay.style.display = 'flex'; // Hiện lớp phủ dạng flex để căn giữa ảnh
+    
+    // Khóa cuộn trang web bên dưới để không bị trượt khi đang xem ảnh
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const overlay = document.getElementById('lightboxOverlay');
+    overlay.style.display = 'none';
+    
+    // Mở lại cuộn trang khi đóng ảnh
+    document.body.style.overflow = 'auto';
+}
+    </script>
+    
+</body>
+</html>

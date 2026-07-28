@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự Án - Nghệ Thuật Lân Sư Rồng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           STYLE ĐỒNG BỘ TOÀN HỆ THỐNG
+           ========================================= */
+        :root {
+            --c-black: #000f37;
+            --c-ink: #1a1a1a;
+            --c-white: #ffffff;
+            --c-paper: #f9f9f7;
+            --c-accent: #8b0000;
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+            --trans-med: 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--trans-med); }
+
+        /* Hiệu ứng Texture Giấy */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* Navbar */
+        /* Navbar & Navigation */
+.navbar {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 15px 0; background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 3px solid var(--ht-cerise); /* Viền đỏ Hàng Trống */
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--f-title); font-size: 1.6rem; font-weight: 900; color: var(--ht-cerise); text-decoration: none; letter-spacing: 1px; }
+
+.nav-menu { display: flex; gap: 20px; list-style: none; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--ht-dark-blue); transition: 0.3s; }
+.nav-link:hover { color: var(--ht-cerise); }
+
+/* Dropdown Menu */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 100%; right: 0; background: white;
+    min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 2px solid var(--ht-blue); padding: 10px 0; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: 0.3s; list-style: none;
+}
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu a { display: block; padding: 10px 20px; text-decoration: none; color: var(--ht-dark-blue); font-size: 0.9rem; border-bottom: none !important; }
+.dropdown-menu a:hover { background: var(--ht-paper); color: var(--ht-cerise); }
+        
+        /* Navbar - Clean version */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-family: var(--f-title); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: var(--c-black); text-decoration: none; }
+        
+        .nav-menu { display: flex; gap: 25px; list-style: none; }
+        .nav-link { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; position: relative; color: var(--c-ink); transition: 0.3s; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--c-black); transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--c-accent); }
+        .nav-link i { font-size: 0.7em; margin-left: 5px; transition: transform 0.3s; }
+        .nav-item-dropdown:hover .nav-link i { transform: rotate(180deg); }
+
+        /* Dropdown Menu */
+        .nav-item-dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute; top: 100%; right: 0; background: white;
+            min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 2px solid var(--c-accent); padding: 10px 0; opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: 0.3s; list-style: none; border-radius: 0 0 4px 4px;
+        }
+        .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 12px 25px; text-decoration: none; color: #555; font-size: 0.9rem; transition: 0.2s; border-left: 3px solid transparent; }
+        .dropdown-menu a:hover { background: #fafafa; color: var(--c-accent); border-left-color: var(--c-accent); padding-left: 30px; }
+
+        /* Article Styles */
+        .article-header { margin-top: 100px; text-align: center; padding: 60px 0 40px; }
+        .category-tag { display: inline-block; border: 1px solid var(--c-black); padding: 5px 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; }
+        .article-title { font-family: var(--f-title); font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+
+        .content-wrapper { max-width: 850px; margin: 0 auto 100px; font-size: 1.15rem; text-align: justify; }
+        .dropcap { float: left; font-family: var(--f-title); font-size: 5.5rem; line-height: 0.7; padding-right: 15px; padding-top: 10px; color: var(--c-accent); }
+        
+        h2 { font-family: var(--f-title); font-size: 2rem; margin-top: 45px; margin-bottom: 25px; color: var(--c-black); border-left: 5px solid var(--c-accent); padding-left: 20px; }
+        p { margin-bottom: 25px; }
+
+        .highlight-box { background-color: #f0eee9; padding: 35px; margin: 40px 0; border: 1px double #ccc; position: relative; }
+        .highlight-box::before { content: "✦"; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--c-paper); padding: 0 10px; color: var(--c-accent); }
+
+        /* Animation */
+        .fade-in { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        footer { background-color: var(--c-black); color: #888; padding: 60px 0 30px; text-align: center; margin-top: auto; }
+        .footer-logo { color: white; font-family: var(--f-title); font-size: 1.5rem; margin-bottom: 15px; }
+
+        /* Mobile Toggle */
+        .nav-toggle { display: none; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background-color: var(--c-paper);
+                flex-direction: column; align-items: flex-start; justify-content: flex-start;
+                box-shadow: -5px 0 20px rgb(19, 0, 63); 
+                transition: right 0.4s ease;
+                padding: 80px 30px 100px 30px; 
+                overflow-y: auto;
+                gap: 0;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; z-index: 1001; }
+            
+            .nav-item-dropdown { width: 100%; }
+            .nav-link { font-size: 1.1rem; }
+            
+            .dropdown-menu {
+                position: static; opacity: 1; visibility: visible; 
+                transform: none; box-shadow: none; border: none;
+                background: transparent; min-width: 100%;
+                max-height: 0; overflow: hidden; padding: 0;
+                transition: max-height 0.4s ease; margin-top: 0;
+            }
+            
+            .nav-item-dropdown.open .dropdown-menu { 
+                max-height: 500px; 
+                margin-top: 10px; 
+            }
+            .nav-item-dropdown.open .nav-link i { transform: rotate(180deg); }
+
+            .dropdown-menu a {
+                padding-left: 15px;      
+                font-size: 1rem;         
+                background-color: rgba(0,0,0,0.03); 
+                border-bottom: 1px dashed rgba(0,0,0,0.05); 
+                border-left: none;
+            }
+            
+            .dropdown-menu a::before {
+                content: "•"; color: var(--c-accent); margin-right: 8px; font-size: 1.2rem;
+                line-height: 0; position: relative; top: 2px;
+            }
+
+            .article-header { margin-top: 90px; padding: 40px 0 30px; }
+            .article-title { font-size: 2.5rem; }
+            .container { padding: 0 15px; }
+        }
+
+        @media (max-width: 768px) {
+            .article-header { margin-top: 80px; padding: 30px 0 25px; }
+            .article-title { font-size: 2rem; }
+            .category-tag { font-size: 0.75rem; }
+            .content-wrapper { font-size: 1rem; margin-bottom: 60px; }
+            .dropcap { font-size: 4rem; padding-right: 10px; }
+            h2 { font-size: 1.5rem; margin-top: 30px; }
+            .highlight-box { padding: 25px; margin: 30px 0; }
+            p { margin-bottom: 18px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.2rem; }
+            .article-header { margin-top: 70px; padding: 20px 0 15px; }
+            .article-title { font-size: 1.5rem; }
+            .category-tag { font-size: 0.7rem; padding: 4px 10px; }
+            .content-wrapper { font-size: 0.95rem; margin-bottom: 40px; }
+            .dropcap { font-size: 3rem; padding-right: 8px; padding-top: 5px; }
+            h2 { font-size: 1.25rem; margin-top: 20px; padding-left: 15px; }
+            .highlight-box { padding: 20px; margin: 20px 0; font-size: 0.9rem; }
+            .container { padding: 0 12px; }
+            p { margin-bottom: 15px; }
+            .nav-menu { width: 90%; max-width: 300px; padding: 70px 20px 80px; }
+            .nav-link { font-size: 1rem; }
+            footer { padding: 40px 0 20px; }
+            .footer-logo { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+        
+        <div class="nav-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li><a class="nav-link" href="duan.html">Dự án</a></li>
+            
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Lân Sư Rồng <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                    <li><a href="taohinh.html">Tạo hình</a></li>
+                    <li><a href="giaothoa(1).html">Giao thoa</a></li>
+                    <li><a href="giaoduc.html">Giáo dục</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Trải Nghiệm <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                    <li><a href="flipaclip.html">Phim hoạt hình và tranh</a></li>
+                    <li><a href="chatbot.html">Trợ lý ảo AI</a></li>
+                </ul>
+            </li>
+
+            <li><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+            <li><a class="nav-link" href="about.html">Về chúng mình</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div style="height: 80px;"></div>
+
+    <main class="container">
+        <header class="article-header fade-in">
+            <span class="category-tag">Nghiên cứu & Phát triển</span>
+            <h1 class="article-title">DỰ ÁN</h1>
+        </header>
+
+        <article class="content-wrapper fade-in" style="animation-delay: 0.2s;">
+            <h2>Vì sao nghệ thuật Lân Sư Rồng cần được bảo tồn và &NonBreakingSpace; phát huy?</h2>
+            <p>
+                <span class="dropcap">N</span>ghệ thuật Lân Sư Rồng tại Thành phố Hồ Chí Minh là một loại hình nghệ thuật đặc sắc, đánh dấu sự giao thoa văn hóa giữa dân tộc Việt và Hoa. Đây là loại hình nghệ thuật giàu tính biểu tượng, nổi tiếng với may mắn, thịnh vượng và bình an thông qua những âm thanh sôi động và các điệu múa phối hợp nhịp nhàng. 
+            </p>
+            
+            <p>
+                Không chỉ mang giá trị giải trí, nghệ thuật Lân Sư Rồng còn là cầu nối văn hóa giữa các dân tộc, thế hệ, góp phần giáo dục, quảng bá truyền thống và phát triển nền kinh tế mạnh mẽ. Tuy nhiên hiện nay, sự thiếu hụt các phương thức giáo dục di sản có tính tương tác và tương thích với hành vi tiếp nhận thông tin của học sinh đã dẫn đến sự đứt gãy kết nối giữa nghệ thuật Lân Sư Rồng và học sinh tại Thành phố Hồ Chí Minh.
+            </p>
+
+            <div class="highlight-box">
+                <p>
+                    Học sinh ngày nay có ít cơ hội và điều kiện tiếp cận, dẫn đến sự thiếu hiểu biết và mất dần mối quan tâm đến bộ môn nghệ thuật này. Sự gián đoạn trong truyền thừa đặt ra yêu cầu cấp thiết phải có một phương pháp tiếp cận mới, phù hợp với thói quen và ngôn ngữ của giới trẻ, đặc biệt là trong kỷ nguyên số đang phát triển mạnh mẽ hiện nay.
+                </p>
+            </div>
+
+            <p>
+                Trên cơ sở những vấn đề đặt ra, dự án tiến hành nghiên cứu đề tài <strong>“Ứng dụng nghệ thuật số trong bảo tồn và phát huy nghệ thuật Lân Sư Rồng tại Thành phố Hồ Chí Minh”</strong> với định hướng vận dụng sản phẩm khoa học công nghệ nhằm xây dựng những giải pháp mới, hiệu quả và có tính ứng dụng cao trong bảo tồn và phát triển nghệ thuật Lân Sư Rồng ở bối cảnh kỷ nguyên số, qua đó góp phần giữ gìn bản sắc văn hóa truyền thống của dân tộc.
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">LÂN SƯ RỒNG</div>
+            <p>&copy; 2026 Lion Dragon Heritage Education. Designed with Oriental Soul.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Toggle Dropdown on Mobile
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const parent = toggle.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nghệ Thuật Tạo Hình - Lân Sư Rồng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Container bọc ảnh để căn giữa */
+.img-center-wrapper {
+    display: block;
+    margin: 20px auto; /* Căn giữa hoàn toàn */
+    max-width: 350px;  /* Độ rộng tối đa để ảnh không bị quá to trên laptop */
+    width: 90%;        /* Chiếm 90% chiều ngang trên điện thoại */
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 3px solid #eee;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.img-center-wrapper:hover {
+    transform: scale(1.02);
+    border-color: var(--c-accent);
+}
+
+/* Ảnh hiển thị đầy đủ không bị mất góc */
+.img-responsive {
+    width: 100%;
+    height: auto;      /* Giữ đúng tỉ lệ ảnh gốc */
+    display: block;
+    object-fit: contain; 
+}
+
+/* Lớp phủ thông báo khi di chuột vào */
+.zoom-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(139, 0, 0, 0.7); /* Màu đỏ đô trùng với màu accent */
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.img-center-wrapper:hover .zoom-overlay {
+    opacity: 1;
+}
+
+/* Tương thích cho điện thoại */
+@media (max-width: 768px) {
+    .img-center-wrapper {
+        max-width: 100%; /* Cho phép ảnh to hết cỡ màn hình điện thoại */
+        margin: 15px auto;
+    }
+}
+        /* Container cho ảnh nhỏ */
+.img-mini-container {
+    width: 200px; /* Độ rộng vừa phải trên laptop */
+    height: 120px;
+    margin: 10px 0 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    cursor: zoom-in;
+    transition: 0.3s;
+}
+
+.img-mini-container:hover {
+    border-color: var(--c-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.img-mini {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giúp ảnh không bị méo */
+}
+
+/* Tương thích điện thoại */
+@media (max-width: 480px) {
+    .img-mini-container {
+        width: 150px;
+        height: 100px;
+    }
+}
+
+/* Tận dụng lại class Lightbox có sẵn hoặc thêm mới nếu chưa có */
+.gallery-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1100;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    border: 3px solid white;
+    border-radius: 4px;
+}
+        
+        /* Định nghĩa vùng chứa Hotspot */
+.hotspot {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tạo vòng tròn tâm */
+.pulse-ring {
+    width: 12px;
+    height: 12px;
+    background-color: #ffcc00; /* Màu vàng đặc trưng của Lân */
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+/* Tạo hiệu ứng vòng tròn tỏa ra */
+.pulse-ring::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    animation: pulse-animation 2s infinite;
+    opacity: 0.7;
+}
+
+/* Khai báo chuyển động tỏa ra */
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(3.5);
+        opacity: 0;
+    }
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.hotspot:hover .pulse-ring {
+    background-color: #ff0000; /* Đổi sang màu đỏ khi hover cho nổi bật */
+    box-shadow: 0 0 20px #ff0000;
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+        .hotspot {
+    cursor: pointer; /* Thêm dòng này */
+    position: absolute; /* Đảm bảo hotspot có vị trí tuyệt đối để đè lên ảnh */
+    z-index: 10;       /* Đảm bảo nằm trên cùng */
+    width: 20px;       /* Tùy chỉnh kích thước vùng bấm */
+    height: 20px;
+    /* Bạn có thể thêm background-color: transparent; nếu muốn vùng bấm ẩn đi */
+}
+        .hotspot:hover .pulse-ring {
+    transform: scale(1.5); /* Vòng tròn tỏa ra to hơn khi rê chuột vào */
+    background-color: rgba(255, 255, 0, 0.8); /* Chuyển sang màu vàng sáng */
+    transition: all 0.3s ease;
+}
+        /* Khung chứa ảnh trong chế độ Lightbox */
+.interactive-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;     /* Chừa lề nhỏ để không sát mép màn hình */
+    height: 90vh;   /* Chiều cao tối đa bằng 90% màn hình thiết bị */
+    margin: auto;
+}
+
+/* Ảnh gốc (Tranh đầu Lân) */
+.full-art {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Đảm bảo toàn bộ bức tranh hiện ra, không bị cắt */
+    border: 3px solid var(--c-yellow); /* Thêm viền vàng để tăng tính UI */
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+        /* Navbar & Navigation */
+.navbar {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 15px 0; background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 3px solid var(--ht-cerise); /* Viền đỏ Hàng Trống */
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--f-title); font-size: 1.6rem; font-weight: 900; color: var(--ht-cerise); text-decoration: none; letter-spacing: 1px; }
+
+.nav-menu { display: flex; gap: 20px; list-style: none; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--ht-dark-blue); transition: 0.3s; }
+.nav-link:hover { color: var(--ht-cerise); }
+
+/* Dropdown Menu */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 100%; right: 0; background: white;
+    min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 2px solid var(--ht-blue); padding: 10px 0; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: 0.3s; list-style: none;
+}
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu a { display: block; padding: 10px 20px; text-decoration: none; color: var(--ht-dark-blue); font-size: 0.9rem; border-bottom: none !important; }
+.dropdown-menu a:hover { background: var(--ht-paper); color: var(--ht-cerise); }
+        /* =========================================
+           GLOBAL STYLE (Đồng bộ hóa)
+           ========================================= */
+        :root {
+            --c-black: #0d0d0d;
+            --c-ink: #1a1a1a;
+            --c-white: #ffffff;
+            --c-paper: #f9f9f7;
+            --c-accent: #8b0000;
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+            --trans-med: 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--trans-med); }
+
+        /* Texture Giấy Cổ */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-title); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; }
+        
+        .nav-menu { display: flex; gap: 25px; list-style: none; }
+        .nav-link { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--c-black); transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Header */
+        .article-header { margin-top: 100px; text-align: center; padding: 40px 0; }
+        .category-tag { display: inline-block; border: 1px solid var(--c-black); padding: 5px 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; }
+        .article-title { font-family: var(--f-title); font-size: 3rem; line-height: 1.2; margin-bottom: 20px; }
+
+        /* Content */
+        .content-wrapper { max-width: 800px; margin: 0 auto 100px; font-size: 1.15rem; text-align: justify; }
+        
+        /* === NEW CSS CHO ẢNH === */
+        /* Khung chứa ảnh bám sát kích thước thực tế của ảnh */
+.interactive-area {
+    position: relative;
+    display: inline-block; /* Quan trọng: Để container không rộng hơn ảnh */
+    max-width: 95%;
+    max-height: 85vh;
+    margin: auto;
+}
+
+.full-art {
+    display: block;
+    width: 100%;
+    height: auto; /* Giữ nguyên tỉ lệ để tọa độ % luôn đúng */
+    border: 3px solid #f2d212;
+    border-radius: 4px;
+}
+
+/* Định vị Hotspot dựa trên tâm điểm */
+.hotspot {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    /* translate(-50%, -50%) giúp tâm vòng tròn đè đúng vào tọa độ % */
+    transform: translate(-50%, -50%); 
+    cursor: pointer;
+    z-index: 10;
+}
+
+.pulse-ring {
+    width: 14px;
+    height: 14px;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+.pulse-ring::before {
+    content: '';
+    position: absolute;
+    width: 100%; height: 100%;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(3.5); opacity: 0; }
+}
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dropcap { float: left; font-family: var(--f-title); font-size: 5rem; line-height: 0.7; padding-right: 15px; padding-top: 10px; color: var(--c-accent); }
+        
+        h2 { font-family: var(--f-title); font-size: 1.8rem; margin-top: 45px; margin-bottom: 20px; color: var(--c-black); border-bottom: 1px solid #ddd; display: inline-block; }
+        h3 { font-family: var(--f-title); font-size: 1.4rem; margin: 25px 0 15px; color: var(--c-accent); }
+        p { margin-bottom: 20px; }
+        
+        .content-list { list-style: none; margin-bottom: 25px; }
+        .content-list li { margin-bottom: 12px; padding-left: 25px; position: relative; }
+        .content-list li::before { content: "✦"; position: absolute; left: 0; color: var(--c-accent); }
+
+        .highlight-box { background-color: #f0eee9; padding: 30px; margin: 35px 0; border-left: 5px solid var(--c-accent); }
+        
+        /* Animation */
+        .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile Toggle Icon */
+        .nav-toggle { display: none; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
+
+        footer { background-color: var(--c-black); color: #888; padding: 50px 0; text-align: center; }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background-color: var(--c-paper);
+                flex-direction: column; align-items: flex-start; justify-content: flex-start;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1); 
+                transition: right 0.4s ease;
+                padding: 80px 30px 100px 30px; 
+                overflow-y: auto;
+                gap: 0;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; z-index: 1001; }
+            
+            .nav-item-dropdown { 
+                width: 100%; 
+            }
+            .nav-link { font-size: 1.1rem; }
+            
+            .dropdown-menu {
+                position: static; opacity: 1; visibility: visible; 
+                transform: none; box-shadow: none; border: none;
+                background: transparent; min-width: 100%;
+                max-height: 0; overflow: hidden; padding: 0;
+                transition: max-height 0.4s ease; margin-top: 0;
+            }
+            
+            .nav-item-dropdown.open .dropdown-menu { 
+                max-height: 500px; 
+                margin-top: 10px; 
+            }
+            .nav-item-dropdown.open .nav-link i { transform: rotate(180deg); }
+
+            .dropdown-menu a {
+                padding-left: 15px;      
+                font-size: 1rem;         
+                background-color: rgba(0,0,0,0.03); 
+                border-bottom: 1px dashed rgba(0,0,0,0.05); 
+                border-left: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-header { margin-top: 100px; padding: 40px 0 30px; }
+            .article-title { font-size: 2.5rem; }
+            .category-tag { font-size: 0.75rem; padding: 4px 10px; }
+            .container { padding: 0 15px; }
+            h2 { font-size: 1.8rem !important; }
+            .content-wrapper { gap: 20px; }
+            p { font-size: 0.95rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.2rem; }
+            .article-header { margin-top: 80px; padding: 30px 0 20px; }
+            .article-title { font-size: 1.8rem; }
+            .category-tag { font-size: 0.7rem; padding: 4px 8px; }
+            .container { padding: 0 12px; }
+            h2 { font-size: 1.5rem !important; }
+            .nav-menu { width: 90%; max-width: 300px; padding: 70px 20px 80px; }
+            .nav-link { font-size: 1rem; }
+            p { font-size: 0.9rem; }
+            .featured-image { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+        
+        <div class="nav-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li><a class="nav-link" href="duan.html">Dự án</a></li>
+            
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Lân Sư Rồng <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                    <li><a href="taohinh.html">Tạo hình</a></li>
+                    <li><a href="giaothoa (1).html">Giao thoa</a></li>
+                    <li><a href="giaoduc.html">Giáo dục</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Trải Nghiệm <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                    <li><a href="flipaclip.html">Phim hoạt hình 2D và tranh</a></li>
+                    <li><a href="chatbot.html">Trợ lý AI</a></li>
+                </ul>
+            </li>
+
+            <li><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+            <li><a class="nav-link" href="about.html">Về chúng mình</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div style="height: 80px;"></div>
+
+    <main class="container">
+        <header class="article-header fade-in">
+            <span class="category-tag">Mỹ Thuật & Tâm Linh</span>
+            <h1 class="article-title">Nghệ Thuật Tạo Hình Lân Sư Rồng</h1>
+        </header>
+
+        <article class="content-wrapper fade-in" style="animation-delay: 0.2s;">
+            
+            <div style="margin: 40px 0; text-align: center;">
+                <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040221/Ng%C5%A9_h%E1%BB%95_t%C6%B0%E1%BB%9Bng_-_T%E1%BA%A1o_h%C3%ACnh_qgftte.jpg" 
+                     alt="Ngũ Hổ Tướng" 
+                     style="width: 100%; height: auto; border-radius: 2px;">
+                <span class="caption">Tranh sưu tầm hình vẽ nhóm Ngũ&nbsp;Hổ&nbsp;Tướng&nbsp;.</span>
+            </div>
+
+            <h2>Ý nghĩa biểu tượng và bản chất tâm linh</h2>
+            <p>
+                <span class="dropcap">M</span>úa Lân Sư Rồng không chỉ là giải trí mà còn mang đậm màu sắc tâm linh trong đời sống tinh thần của cộng đồng.
+            </p>
+            <ul class="content-list">
+                <li><strong>Biểu tượng may mắn:</strong> Lân là linh vật tượng trưng cho sự thịnh vượng, tài lộc và điềm lành, biểu tượng cho mưa thuận gió hòa và sức mạnh quyền uy.</li>
+                <li><strong>Xua đuổi tà ma:</strong> Theo quan niệm, múa Lân giúp xua đuổi tà khí, còn Ông Địa (Đại Đầu Phật) biểu diễn cùng sẽ mang phúc lộc và sự an lành đến cho gia chủ.</li>
+                <li><strong>Nghi thức Khai quang điểm nhãn:</strong> Đây là lễ trang trọng để "mở mắt" cho linh vật mới, giúp nó có linh khí, "nhận chủ" và chính thức hoạt động. Việc điểm nhãn thực hiện từ mắt, mũi, miệng đến tai và trán để khai thông giác quan và trí tuệ.</li>
+                <li><strong>Gắn kết với võ thuật:</strong> Một con Lân chỉ có hồn khi người múa có nền tảng võ thuật vững chắc, thể hiện qua các động tác như Đinh Tấn hay Điếu Mã mô phỏng cảm xúc của linh vật.</li>
+            </ul>
+
+            <h2>Ý nghĩa màu sắc và hoa văn trong tạo hình</h2>
+            <p>Tạo hình của Lân rất công phu, mỗi chi tiết nhỏ đều mang ngụ ý riêng biệt:</p>
+            <ul class="content-list">
+                <li><strong>Màu sắc theo nhân vật lịch sử (Ngũ Hổ Tướng):</strong>
+                <ul>
+    <li>
+        <strong>Triệu Vân:</strong> Nền xanh, râu đen, thể hiện sự hòa khí, mưu trí.
+        <div class="img-center-wrapper" onclick="openGalleryLightbox(this)">
+            <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773794637/z7620903099800_0b1bf8bf1917b2f9ceb7971c7daef154_kwuakh.jpg" alt="LânTriệu Vân" class="img-mini">
+        </div>
+    </li>
+    <li>
+        <strong>Quan Vũ:</strong> Nền đỏ, râu đen, họa tiết trang trí màu xanh lá, thể hiện sự trung nghĩa.
+        <div class="img-center-wrapper" onclick="openGalleryLightbox(this)">
+            <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773794631/z7620943883172_c60e381a44834e11b270c16d38846f61_ttbkb8.jpg" alt=" Lân Quan Vũ" class="img-mini">
+        </div>
+    </li>
+    <li>
+        <strong>Trương Phi:</strong> Nền đen, râu đen và ngắn, thể hiện khí dũng, oai cường.
+        <div class="img-center-wrapper" onclick="openGalleryLightbox(this)">
+            <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773794636/z7620926620910_beaa68c62dbb354249a4110b35595e1a_qbtvn3.jpg" alt="Lân Trương Phi" class="img-mini">
+        </div>
+    </li>
+    <li>
+        <strong>Mã Siêu:</strong> Nền xanh dương, râu đen và ngắn, thể hiện sự mạnh mẽ, hiên ngang.
+        <div class="img-center-wrapper" onclick="openGalleryLightbox(this)">
+            <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773794632/z7620903194825_584fa739d31e972e9926967670191cfc_bd7yp6.jpg" alt="Lân Mã Siêu" class="img-mini">
+        </div>
+    </li>
+    <li>
+        <strong>Hoàng Trung:</strong> Nền vàng, râu đen, thể hiện tinh thần dũng mãnh, xông pha.
+        <div class="img-center-wrapper" onclick="openGalleryLightbox(this)">
+            <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773801956/z7620903185729_5683e2929d162318d46467f3a36d6745_gumo0k.jpg" alt="Lân Hoàng Trung" class="img-mini">
+        </div>
+    </li>
+    </ul>    
+                </li>
+                <li><strong>Hoa văn đặc trưng:</strong>
+                    <ul>
+                        <li><strong>Hồi văn:</strong> Họa tiết xoay vòng ngụ ý may mắn và mong cầu sự bình an quay trở về.</li>
+                        <li><strong>Hải thủy giang nhai:</strong> Hình ảnh biển, núi và mây, tượng trưng cho sự thống nhất giang sơn và phúc thọ.</li>
+                        <li><strong>Trang trí:</strong> Trái châu trên đỉnh đầu tượng trưng cho mão quan lại; các miếng sắt tròn mô phỏng áo giáp tướng sĩ thời xưa.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="highlight-box">
+                <h2>Hình dáng và cấu tạo đầu lân</h2>
+                <ul class="content-list">
+                    <li><strong>Lân Phật Sơn:</strong> Mệnh danh là "lân mỏ dảnh" với sừng nhọn xoắn ốc bọc sắt (từng dùng làm vũ khí). Miệng vểnh lên thể hiện sự mạnh mẽ trong chiến đấu truyền thống. Nặng khoảng 5kg.</li>
+                    <li><strong>Lân Hạc Sơn:</strong> Gọi là "lân mỏ tròn", sừng tròn giống nấm, không có độ sát thương. Tạo hình hiện đại, dễ thương và gần gũi hơn. Nặng khoảng 2kg giúp người múa linh hoạt hơn.</li>
+                </ul>
+            </div>
+            <h3>Với những thông tin trên, các bạn có thể nhìn lại một cách tổng quan và chi tiết hơn với bức tranh đầu Lân Phật Sơn sau<br><i>(Nhớ là phải xem phải xem thật kĩ nha)</i></h3>
+          <strong>Đầu Lân Phật Sơn</strong> 
+        <div class="img-center-wrapper" onclick="openGalleryLightbox(this)">
+            <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1774006258/Kh%C3%B4ng_C%C3%B3_Ti%C3%AAu_%C4%90%E1%BB%81143_20260320182931_vfmbhf.png" alt="Lân Hoàng Trung" class="img-mini">
+        </div>  
+</div>
+
+
+
+            <h2>Phong cách múa (Bộ pháp và Thần thái)</h2>
+            <ul class="content-list">
+                <li><strong>Phái Phật Sơn:</strong> Theo đuổi kiểu múa "Hổ báo hình", mô phỏng loài hổ hoặc sư tử với các động tác mạnh mẽ, oai phong và uy nghi.</li>
+                <li><strong>Phái Hạc Sơn:</strong> Theo đuổi kiểu múa "Long hình", nhưng thực tế mô phỏng hành động nhanh nhẹn của loài mèo, đặc trưng bởi sự uyển chuyển và linh hoạt.</li>
+            </ul>
+            <div class="fade-in text-center" style="margin-top: 50px; text-align: center; animation-delay: 0.4s;">
+    <button class="btn-folk" onclick="window.location.href='flipaclip.html'" style="padding: 15px 40px; background-color: #8b0000; color: white; border: none; border-radius: 50px; cursor: pointer; font-family: 'Lora', serif; font-weight: 700; text-transform: uppercase;">
+        Sáng tạo và trải nghiệm
+    </button>
+</div>
+        </article>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div style="font-family: var(--f-title); color: white; font-size: 1.5rem; margin-bottom: 15px;">LÂN SƯ RỒNG</div>
+            <p>&copy; 2026 Lion Dragon Heritage Education. Designed with Oriental Soul.</p>
+        </div>
+    </footer>
+<script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần Mềm Hỗ Trợ - Lân Sư Rồng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --c-black: #0d0d0d;
+            --c-white: #ffffff;
+            --c-paper: #f9f9f7;
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            overflow-x: hidden;
+        }
+
+        /* Navbar đồng bộ các trang khác */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 0; background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-title); font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--c-black); }
+
+        /* Tiêu đề trang */
+        .page-header {
+            margin-top: 100px;
+            text-align: center;
+            padding: 40px 0;
+        }
+        .page-header h1 { font-family: var(--f-title); font-size: 3rem; margin-bottom: 10px; }
+
+        /* Bố cục hai ô tương phản */
+        .software-wrapper {
+            display: flex;
+            min-height: 70vh;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .split-box {
+            flex: 1;
+            min-width: 50vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            text-align: center;
+            transition: 0.5s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Ô Trái: Nền trắng chữ đen */
+        .box-light {
+            background-color: var(--c-white);
+            color: var(--c-black);
+            border-right: 1px solid #eee;
+        }
+
+        /* Ô Phải: Nền đen chữ trắng */
+        .box-dark {
+            background-color: var(--c-black);
+            color: var(--c-white);
+        }
+
+        .split-box i { font-size: 4rem; margin-bottom: 30px; }
+        .split-box h2 { font-family: var(--f-title); font-size: 2.5rem; margin-bottom: 20px; }
+        .split-box p { font-size: 1.1rem; max-width: 400px; line-height: 1.6; margin-bottom: 30px; opacity: 0.8; }
+
+        /* Nút bấm giả để trang trí */
+        .btn-outline {
+            padding: 12px 30px;
+            border: 1px solid;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .box-light .btn-outline { border-color: var(--c-black); color: var(--c-black); }
+        .box-dark .btn-outline { border-color: var(--c-white); color: var(--c-white); }
+
+        /* Hiệu ứng Hover */
+        .split-box:hover { transform: scale(1.02); z-index: 2; box-shadow: 0 0 50px rgba(0,0,0,0.1); }
+        .box-light:hover { background-color: #f0f0f0; }
+        .box-dark:hover { background-color: #1a1a1a; }
+
+        @media (max-width: 768px) {
+            .split-box { min-width: 100%; min-height: 50vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Phần Mềm Hỗ Trợ</h1>
+        <p>Ứng dụng công nghệ nghệ thuật số 4.0 vào bảo tồn di sản</p>
+    </header>
+
+    <main class="software-wrapper">
+        <a href="chatbot.html" class="split-box box-light">
+            <i class="fas fa-comments"></i>
+            <h2>Trợ Lý Ảo Di Sản</h2>
+            <p>Hỏi đáp về lịch sử, ý nghĩa và kỹ thuật múa Lân Sư Rồng với AI được huấn luyện chuyên sâu.</p>
+            <div class="btn-outline">Trò Chuyện Ngay</div>
+        </a>
+
+        <a href="hdsdkiri.html" class="split-box box-dark">
+            <i class="fas fa-cube"></i>
+            <h2>Bảo Tàng 3D</h2>
+            <p>Xoay, phóng to và chiêm ngưỡng cấu trúc đầu Lân, Rồng trong không gian ba chiều.</p>
+            <div class="btn-outline">Trải Nghiệm 3D</div>
+        </a>
+    </main>
+
+</body>
+</html>

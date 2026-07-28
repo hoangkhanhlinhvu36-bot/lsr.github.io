@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sự Giao Thoa Văn Hóa - Lân Sư Rồng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Navbar & Navigation */
+.navbar {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 15px 0; background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 3px solid var(--ht-cerise); /* Viền đỏ Hàng Trống */
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--f-title); font-size: 1.6rem; font-weight: 900; color: var(--ht-cerise); text-decoration: none; letter-spacing: 1px; }
+
+.nav-menu { display: flex; gap: 20px; list-style: none; }
+.nav-link { font-size: 0.85rem; text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--ht-dark-blue); transition: 0.3s; }
+.nav-link:hover { color: var(--ht-cerise); }
+
+/* Dropdown Menu */
+.nav-item-dropdown { position: relative; }
+.dropdown-menu {
+    position: absolute; top: 100%; right: 0; background: white;
+    min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 2px solid var(--ht-blue); padding: 10px 0; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: 0.3s; list-style: none;
+}
+.nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-menu a { display: block; padding: 10px 20px; text-decoration: none; color: var(--ht-dark-blue); font-size: 0.9rem; border-bottom: none !important; }
+.dropdown-menu a:hover { background: var(--ht-paper); color: var(--ht-cerise); }
+
+        /* =========================================
+           COPY STYLE TỪ TAOHINH.HTML (Đồng bộ)
+           ========================================= */
+        :root {
+            --c-black: #002404;
+            --c-ink: #192338;
+            --c-gray-dark: #320000;
+            --c-white: #ffffff;
+            --c-paper: #f9f9f7;
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+            --trans-med: 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--trans-med); }
+        ul { list-style: none; }
+
+        /* Texture Giấy */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* Navbar Style */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-title); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; }
+        
+        .nav-menu { display: flex; gap: 25px; }
+        .nav-link { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; position: relative; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--c-black); transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Mobile Menu */
+        .nav-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+                background: rgba(255,255,255,0.98); flex-direction: column;
+                justify-content: center; align-items: center; transition: 0.4s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; z-index: 1001; }
+        }
+
+        /* =========================================
+           PAGE SPECIFIC STYLES
+           ========================================= */
+        
+        .article-header {
+            margin-top: 80px;
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .category-tag {
+            display: inline-block;
+            border: 1px solid var(--c-black);
+            padding: 5px 15px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .article-title {
+            font-family: var(--f-title);
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .article-meta {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 40px;
+            display: inline-block;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        /* Hero Image - Thay đổi ảnh nền cho phù hợp chủ đề Giao Thoa */
+        .hero-banner {
+            width: 100%;
+            height: 50vh;
+            /* Ảnh mang tính chất văn hóa/nghệ thuật */
+            background-image: url('https://res.cloudinary.com/daqmrjubp/image/upload/v1769077090/R%E1%BB%93ng02_iqo8hd.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .hero-banner::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, var(--c-paper), transparent);
+        }
+
+        /* Nội dung bài viết */
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto 100px;
+            font-size: 1.15rem;
+            text-align: justify;
+        }
+
+        .dropcap {
+            float: left;
+            font-family: var(--f-title);
+            font-size: 6rem;
+            line-height: 0.7;
+            padding-right: 15px;
+            padding-top: 10px;
+            color: #8b0000;
+        }
+
+        p { margin-bottom: 25px; }
+
+        h2 {
+            font-family: var(--f-title);
+            font-size: 2rem;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: "✦";
+            display: block;
+            font-size: 1rem;
+            color: #8b0000;
+            margin-top: 10px;
+        }
+
+        ul.content-list {
+            list-style: disc inside;
+            margin-bottom: 25px;
+            padding-left: 10px;
+        }
+        ul.content-list li {
+            margin-bottom: 15px;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background-color: #f0eee9;
+            padding: 30px;
+            margin: 40px 0;
+            border-left: 3px solid var(--c-black);
+        }
+        .highlight-title {
+            font-family: var(--f-title);
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Image Grid layout */
+        .img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .img-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: filter 0.3s;
+        }
+        .img-grid img:hover { filter: grayscale(0%); }
+
+        .caption {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+            display: block;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .article-title { font-size: 2rem; }
+            .img-grid { grid-template-columns: 1fr; }
+            .content-wrapper { padding: 0 20px; }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--c-black);
+            color: #888;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        .copyright { border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem; margin-top: 30px;}
+        
+        /* Animation */
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+       
+        <ul class="nav-menu">
+            <li><a class="nav-link" href="duan.html">Dự án</a></li>
+            
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="#"> Lân Sư Rồng <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                    <li><a href="taohinh.html">Tạo hình</a></li>
+                    <li><a href="giaothoa (1).html">Giao thoa</a></li>
+                    <li><a href="giaoduc.html">Giáo dục</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="#">Trải Nghiệm <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                    <li><a href="flipaclip.html">Phim hoạt hình và tranh</a></li>
+                    <li><a href="chatbot.html">Trợ lý AI</a></li>
+                </ul>
+            </li>
+
+            <li><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+            <li><a class="nav-link" href="about.html">Về chúng mình</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div style="height: 80px;"></div>
+
+    <main>
+        
+        <header class="container article-header fade-up">
+            <span class="category-tag">Văn Hóa & Tín Ngưỡng</span>
+            <h1 class="article-title">Sự giao thoa:<br>Từ Võ Thuật Đến Tâm Linh</h1>
+            <div class="article-meta">
+                Sự hội tụ tinh hoa của nhiều loại hình nghệ thuật
+            </div>
+        </header>
+
+        <div class="hero-banner fade-up" style="animation-delay: 0.2s;"></div>
+
+        <article class="content-wrapper fade-up" style="animation-delay: 0.4s;">
+            
+            <h2>Giao thoa với Võ thuật</h2>
+            <p><figure style="margin: 40px 0; text-align: center;">
+    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040223/Ngu%E1%BB%93n_g%E1%BB%91c_02_ztyqef.jpg" 
+         style="width: 100%; height: auto; border: 1px solid #ddd; padding: 5px; background: #fff;">
+    <figcaption style="font-style: italic; font-size: 0.9rem; margin-top: 10px;">Di sản Lân Sư Rồng trong dòng chảy văn hóa hiện đại</figcaption>
+</figure>
+                <span class="dropcap">G</span>iao thoa giữa Nghệ thuật biểu diễn và Võ thuật là nền tảng cốt lõi của bộ môn này.
+            </p>
+            <p>
+                <strong>Bộ pháp và kỹ thuật:</strong> Các động tác múa như vồ, chụp, phóng nhảy được mô phỏng từ phản xạ sinh tồn và lối di chuyển của loài vật trong võ thuật. Người múa phải tập luyện võ thuật, đặc biệt là đứng tấn (mã bộ), để có sức khỏe phi thường và sự vững chãi khi thực hiện các động tác khó như nhảy lên đùi hoặc vai đồng đội.
+            </p>
+            <p>
+                <strong>Biểu tượng võ đường:</strong> Trong quá khứ, đầu lân và trống được coi là biểu tượng của võ quán; người múa lân thường phải đạt trình độ huấn luyện viên võ thuật trở lên.
+            </p>
+
+            <div style="margin: 40px 0; text-align: center;">
+                <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769094364/z7458235909294_10328b9693381a1086c1236434ef6cfa_toaqdb.jpg" 
+                     alt="Tấn pháp trong múa lân" 
+                     style="width: 100%; height: auto; border-radius: 2px;">
+                <span class="caption">Sự kết hợp nhuần nhuyễn giữa tấn pháp võ thuật và vũ đạo (Ảnh: Đoàn Lân Sư Rồng Thắng Nghĩa Đường).</span>
+            </div>
+
+            <h2>Giao thoa với Kinh kịch & Hội họa</h2>
+            <p>
+                Nghệ thuật tạo hình linh vật chịu ảnh hưởng mạnh mẽ từ các yếu tố thẩm mỹ truyền thống:
+            </p>
+            <ul class="content-list">
+                <li>
+                    <strong>Kinh kịch:</strong> Cách vẽ mặt lân và các họa tiết trên đầu lân được mô phỏng theo mặt nạ và phục trang của các nhân vật Kinh kịch. Điển hình là bộ "Ngũ hổ tướng" (Lưu Bị, Quan Vũ, Trương Phi, Hoàng Trung, Triệu Vân) với màu sắc và đặc điểm lông, sừng, râu riêng biệt để thể hiện tính cách nhân vật lịch sử.
+                </li>
+                <li>
+                    <strong>Họa tiết hồi văn và phong thủy:</strong> Trên đầu lân xuất hiện các họa tiết như hồi văn (ngụ ý chiến thắng bình an), thủy hải giang nhai (ngụ ý thống nhất giang sơn) hay hình ảnh thanh long chạy dọc theo đầu lân. Ngoài ra, còn có sự kết hợp của các chòm sao (28 chòm sao) và tứ tượng (Thanh Long, Bạch Hổ, Chu Tước, Huyền Vũ) trong trang trí.
+                </li>
+            </ul>
+
+            <div class="img-grid">
+                <div>
+                    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769094620/z7455133430333_847aad3931383d90c78bc952fca7126a_mqux6n.jpg" alt="Màu sắc kinh kịch">
+                    <span class="caption">Ảnh hưởng màu sắc từ mặt nạ Kinh kịch</span>
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769085632/z7457680196867_69ded7fc510259c206ab33c31e7b4c61_ganunj.jpg" alt="Họa tiết đầu lân">
+                    <span class="caption">Họa tiết cầu kỳ trên đầu lân (Ảnh: Đoàn Lân Sư Rồng Hải Nam Liên Hữu)</span>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <span class="highlight-title">Giao thoa giữa các dòng văn hóa và Bang hội</span>
+                <p>Sự đa dạng của nghệ thuật này tại Việt Nam, đặc biệt là vùng Sài Gòn - Chợ Lớn, là kết quả của sự hòa trộn giữa các bang hội người Hoa:</p>
+                
+                <p><strong>Sự phân hóa theo nguồn gốc:</strong> Người Quảng Đông múa Lân (Nam sư), người Triều Châu múa Sư tử (Bắc sư), người Phước Kiến múa Rồng, và người Khách Gia múa Kỳ lân.</p>
+                
+                <p><strong>Sự biến đổi văn hóa:</strong> Ví dụ rõ nét nhất là người Hải Nam vốn múa Cọp, nhưng để phù hợp với quan niệm cầu may ngày Tết tại địa phương, họ đã biến đổi hình dáng con cọp thành con lân không sừng.</p>
+            </div>
+
+            <h2>Tâm linh và Đời sống xã hội</h2>
+            <p>
+                Múa Lân Sư Rồng không chỉ là giải trí mà còn là một nghi thức tâm linh quan trọng trong đời sống văn hóa của người Việt:
+            </p>
+            <ul class="content-list">
+                <li>
+                    <strong>Nghi lễ Khai quang điểm nhãn:</strong> Đây là sự kết hợp giữa niềm tin tâm linh và nghệ thuật, nhằm đánh thức linh tính của linh vật trước khi biểu diễn. Một linh vật mới chỉ thực sự có "hồn" sau khi thực hiện nghi thức điểm nhãn trang trọng.
+                </li>
+                <li>
+                    <strong>Hình tượng linh vật và ý nghĩa:</strong> Rồng được xem là phúc thần mang lại mưa thuận gió hòa trong văn hóa Việt Nam. Trong khi đó, Kỳ Lân tượng trưng cho lòng nhân từ và thái bình thịnh trị.
+                </li>
+                <li>
+                    <strong>Sự xuất hiện của Ông Địa:</strong> Hiện thân của Phật Di Lặc trong bài múa thể hiện sự giao thoa với tín ngưỡng Phật giáo dân gian. Hình ảnh Ông Địa đùa giỡn cùng Lân mang ý nghĩa chế ngự dã tính, chuyển hóa cái ác thành cái thiện để mang lại điềm lành cho nhân gian.
+                </li>
+            </ul>
+
+            <div class="highlight-box">
+                <span class="highlight-title">Giao thoa giữa Truyền thống và Hiện đại</span>
+                <p>Nghệ thuật Lân Sư Rồng đang chuyển mình mạnh mẽ để thích nghi với thời đại mới:</p>
+                <p>
+                    <strong>Cải tiến hình dáng:</strong> Lân truyền thống (Phật Sơn) thường to, nặng, có sừng nhọn vốn là vũ khí trong các cuộc giao tranh võ lâm xưa. Ngày nay, các kỹ thuật hiện đại giúp đầu Lân nhẹ hơn, đồng thời giảm bớt sự cồng kềnh khi múa.
+                </p>
+                <p>
+                    <strong>Công nghệ và hội nhập:</strong> Nhiều đoàn lân hiện nay áp dụng công nghệ biểu diễn mới và các trận pháp hiện đại để tham gia thi đấu quốc tế, đưa Lân Sư Rồng từ một nghệ thuật trình diễn dân gian trở thành một môn thể thao đỉnh cao mang tầm thế giới.
+                </p>
+                <h2>Bản địa, văn hóa Việt Nam</h2>
+                <p>Nghệ thuật múa Lân Sư Rồng tại Thành phố Hồ Chí Minh nói riêng và Việt Nam nói chung được bản địa hóa qua thời gian từ những năm 1900, mang theo những dấu ấn, đặc điểm của con người Việt, văn hóa Việt</p>
+            <ul class="content-list">
+                <li>
+                    <strong>Tiết mục Lân leo cột:</strong> Đây là sự kết hợp giữa múa Lân truyền thống của Trung Hoa với tinh thần, đặc điểm của Việt Nam. Nghệ nhân múa Lân sẽ thực hiện leo lên cột cao (thường làm bằng tre) để thực hiện các động tác võ thuật, ăn cải may mắn, tiền tài hay thả các câu đối, câu chúc từ trên cao. Tiết mục tượng trưng cho sự ngay thẳng, trung thành và luôn luôn có ý chí vượt qua mọi khó khăn để vươn cao đến mọi thành công của người Việt Nam. 
+                </li>
+                <li>
+                <div class="video-wrapper" style="max-width: 800px; margin: 0 auto; position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 4px solid #ffffff;">
+        <video width="100%" height="auto" controls autoplay muted loop poster="https://res.cloudinary.com/daqmrjubp/video/upload/v1773808118/7632239755681_hupqqd.mp4">
+            <source src="https://res.cloudinary.com/daqmrjubp/video/upload/v1774045363/7641572741717_pvoma6.mp4">
+            Trình duyệt của bạn không hỗ trợ thẻ video.
+        </video>
+    </div>
+
+
+            </div>
+            <div class="fade-up text-center" style="margin-top: 50px; text-align: center;">
+    <button class="btn-folk" onclick="window.location.href='taohinh.html'" style="padding: 15px 40px; background-color: #0d0d0d; color: white; border: none; border-radius: 50px; cursor: pointer; font-family: 'Lora', serif; font-weight: 700; text-transform: uppercase;">
+        Cùng đến với cách tạo nên dáng hình Lân
+    </button>
+</div>

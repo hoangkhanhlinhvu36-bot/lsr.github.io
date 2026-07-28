@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo Dục Di Sản - Nghệ Thuật Lân&nbsp;Sư&nbsp;Rồng&nbsp;</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Style cho Modal Hướng dẫn */
+.guide-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none; /* Mặc định ẩn, sẽ hiện bằng JS */
+    justify-content: center; align-items: center;
+    z-index: 99999; /* Đảm bảo nằm trên cùng */
+    backdrop-filter: blur(5px);
+}
+
+.guide-content {
+    position: relative;
+    max-width: 450px;
+    width: 90%;
+    background: var(--c-paper);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(217, 56, 30, 0.3);
+    border: 3px solid var(--c-yellow);
+    animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.guide-content img {
+    width: 100%;
+    display: block;
+}
+
+.guide-close {
+    position: absolute; top: 15px; right: 20px;
+    font-size: 35px; color: var(--c-yellow);
+    cursor: pointer; z-index: 10;
+    line-height: 1; transition: 0.3s;
+}
+
+.guide-close:hover { color: var(--c-red); transform: rotate(90deg); }
+
+.guide-footer {
+    padding: 20px;
+    text-align: center;
+    background: var(--c-white);
+}
+
+/* Khóa cuộn trang khi đang hiện modal */
+body.modal-open { overflow: hidden; }
+        /* =========================================
+           1. BẢNG MÀU TRANH HÀNG TRỐNG & BIẾN
+           ========================================= */
+        :root {
+            /* Màu trích xuất từ ảnh Hàng Trống */
+            --c-red: #D9381E;      /* Đỏ điều - Màu chủ đạo nhấn */
+            --c-yellow: #FFC107;   /* Vàng nghệ - Màu phụ trợ */
+            --c-teal: #006B76;     /* Xanh cổ vịt/Xanh lá già - Màu nền đậm */
+            --c-ink: #192338;      /* Màu mực tàu */
+            --c-paper: #F9F7F2;    /* Màu giấy điệp (ấm hơn cũ một chút) */
+            --c-white: #ffffff;
+            
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+            
+            --trans-med: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-card: 0 10px 30px rgba(0, 107, 118, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--trans-med); }
+        ul { list-style: none; }
+
+        /* Texture giấy điệp toàn trang */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* =========================================
+           2. UTILITIES & TYPOGRAPHY
+           ========================================= */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+
+        h1, h2, h3 {
+            font-family: var(--f-title);
+            font-weight: 700;
+            color: var(--c-ink);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3.5rem; letter-spacing: -1px; }
+        
+        h2 { 
+            font-size: 2.5rem; 
+            position: relative; 
+            display: inline-block; 
+            padding-bottom: 15px;
+            color: var(--c-teal);
+            word-wrap: break-word;
+        }
+        
+        h2::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: min(80px, 100%); height: 4px;
+            background: linear-gradient(to right, var(--c-red), var(--c-yellow), var(--c-teal));
+            border-radius: 2px;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* =========================================
+           3. NAVBAR (CẤU TRÚC MENU MỚI)
+           ========================================= */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background-color: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-top: 5px solid var(--c-red);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 10px 0;
+        }
+
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        
+        .logo { 
+            font-family: var(--f-title); 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            color: var(--c-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Desktop Menu */
+        .nav-menu { display: flex; gap: 30px; align-items: center; height: 100%; }
+
+        .nav-item { position: relative; height: 100%; display: flex; align-items: center; }
+
+        .nav-link {
+            font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+            color: var(--c-ink); transition: var(--trans-med); padding: 5px 0;
+            display: flex; align-items: center; gap: 5px;
+        }
+
+        .nav-link:hover, .nav-item.active .nav-link { color: var(--c-red); }
+        .nav-link i { font-size: 0.7em; margin-top: -2px; transition: transform 0.3s; }
+        .nav-item:hover .nav-link i { transform: rotate(180deg); }
+
+        /* Submenu Style (Dropdown Desktop) */
+        .submenu {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--c-white); min-width: 240px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-top: 3px solid var(--c-yellow);
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease; border-radius: 0 0 4px 4px;
+            padding: 10px 0;
+        }
+
+        .nav-item:hover .submenu {
+            opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+        }
+
+        /* Style chung cho link submenu */
+        .submenu li a {
+            padding: 12px 25px;
+            font-size: 0.95rem; color: #555;
+            display: block; transition: 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .submenu li a:hover {
+            background-color: #fafafa;
+            color: var(--c-teal);
+            border-left-color: var(--c-teal);
+            padding-left: 30px;
+        }
+
+        /* Mobile Toggle Icon */
+        .nav-toggle { display: none; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
+
+        /* =========================================
+           4. HERO SECTION
+           ========================================= */
+        .hero {
+            height: 100vh; position: relative; display: flex;
+            align-items: center; justify-content: center; overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://res.cloudinary.com/daqmrjubp/image/upload/v1769076131/z7457013652841_1c3e0f9fcfb7d52026d798841b5bb33f_ua2yib.jpg'); 
+            background-size: cover; background-position: center; 
+            filter: brightness(1.1) contrast(1.1);
+            z-index: -1; transition: transform 0.2s linear;
+        }
+
+        .hero::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), var(--c-paper));
+            z-index: 0;
+        }
+
+        .hero-content { position: relative; z-index: 1; text-align: center; max-width: 900px; padding: 0 20px; }
+        
+        .hero-subtitle {
+            font-family: var(--f-body); font-size: 1.1rem; letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 20px; display: block;
+            color: var(--c-teal); font-weight: 700;
+        }
+        
+        .hero-title {
+            font-size: 4rem; line-height: 1.2; margin-bottom: 40px;
+            color: var(--c-ink);
+            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+        }
+
+        .btn-folk {
+            display: inline-block; padding: 15px 40px;
+            background-color: var(--c-red); color: var(--c-white);
+            font-family: var(--f-body); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;
+            border: none; border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(217, 56, 30, 0.3);
+            cursor: pointer; transition: all 0.3s ease;
+            position: relative; overflow: hidden; z-index: 1;
+        }
+
+        .btn-folk::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%;
+            background-color: var(--c-yellow); transition: width 0.4s ease; z-index: -1;
+        }
+
+        .btn-folk:hover { color: var(--c-ink); box-shadow: 0 15px 30px rgba(255, 193, 7, 0.4); }
+        .btn-folk:hover::before { width: 100%; }
+
+        /* =========================================
+           5. GRID MENU CHÍNH
+           ========================================= */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; padding-top: 50px;
+        }
+
+        .ink-card {
+            background: var(--c-white); 
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 8px; overflow: hidden; 
+            transition: var(--trans-med); cursor: pointer; 
+            aspect-ratio: 4/5; display: flex; flex-direction: column;
+            position: relative;
+        }
+
+        .ink-card-img { height: 65%; width: 100%; overflow: hidden; position: relative; }
+        .ink-card-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .ink-card-content {
+            height: 35%; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 20px;
+            background-color: var(--c-white); 
+            position: relative; z-index: 2;
+            border-top: 3px solid transparent; transition: border-color 0.3s;
+        }
+
+        .ink-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-card); }
+        .ink-card:hover .ink-card-img img { transform: scale(1.1); }
+        .ink-card:hover .ink-card-content { border-top-color: var(--c-red); }
+        .ink-card-title { font-family: var(--f-title); font-size: 1.4rem; margin: 0; color: var(--c-teal); transition: 0.3s; }
+        .ink-card:hover .ink-card-title { color: var(--c-red); }
+        .ink-card-desc { font-size: 0.9rem; color: #666; margin-top: 5px; font-style: italic; }
+
+        /* =========================================
+           6. FOOTER
+           ========================================= */
+        footer {
+            background-color: var(--c-teal); color: rgba(255,255,255,0.8);
+            padding: 80px 0 30px; margin-top: 100px; position: relative;
+        }
+        
+        footer::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
+            background: linear-gradient(to right, var(--c-red), var(--c-yellow), var(--c-white));
+        }
+
+        .footer-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 40px; }
+        .footer-logo { color: var(--c-yellow); font-family: var(--f-title); font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+        .footer-content h4 { color: var(--c-white); font-size: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; display: inline-block; margin-bottom: 20px; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.85rem; }
+
+        /* =========================================
+           7. RESPONSIVE MEDIA QUERIES (FIX LỖI)
+           ========================================= */
+        
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background-color: var(--c-paper);
+                flex-direction: column; align-items: flex-start; justify-content: flex-start;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1); 
+                transition: right 0.4s ease;
+                /* FIX: Tăng padding-bottom để menu cuối không bị khuất khi cuộn */
+                padding: 80px 30px 100px 30px; 
+                overflow-y: auto;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; z-index: 1001; }
+            
+            .nav-item { 
+                width: 100%; height: auto; display: block; 
+                margin-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px;
+            }
+            .nav-link { font-size: 1.1rem; justify-content: space-between; }
+            
+            /* Mobile Submenu Logic */
+            .submenu {
+                position: static; opacity: 1; visibility: visible; 
+                transform: none; box-shadow: none; border: none;
+                background: transparent; min-width: 100%;
+                max-height: 0; overflow: hidden; padding: 0;
+                transition: max-height 0.4s ease;
+            }
+            
+            /* FIX: Tăng max-height lên 1000px để không bị cắt nội dung */
+            .nav-item.open .submenu { 
+                max-height: 1000px; 
+                margin-top: 10px; 
+            }
+            .nav-item.open .nav-link i { transform: rotate(180deg); }
+
+            /* Style cho link menu con trên mobile */
+            .submenu li a {
+                padding-left: 15px;      
+                padding-top: 15px;       
+                padding-bottom: 15px;
+                font-size: 1rem;         
+                background-color: rgba(0,0,0,0.03); 
+                border-bottom: 1px dashed rgba(0,0,0,0.05); 
+                border-left: none; /* Reset border desktop */
+            }
+            
+            .submenu li a::before {
+                content: "•"; color: var(--c-red); margin-right: 8px; font-size: 1.2rem;
+                line-height: 0; position: relative; top: 2px;
+            }
+            
+            .submenu li a:hover {
+                background-color: #fafafa;
+                padding-left: 15px; /* Giữ nguyên padding khi hover trên mobile */
+            }
+
+            h1 { font-size: 2.5rem; line-height: 1.2; }
+            h2 { font-size: 2rem; }
+            .container { padding: 0 15px; }
+            .section-padding { padding: 50px 0; }
+            .nav-item:hover .submenu {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            .hero-title { font-size: 2.5rem; line-height: 1.3; }
+            .hero-subtitle { font-size: 1rem; margin-bottom: 15px; }
+            .nav-grid { grid-template-columns: 1fr; gap: 25px; }
+            .footer-content { grid-template-columns: 1fr; }
+            .footer-logo { font-size: 1.5rem; }
+            .btn-folk { padding: 12px 30px; font-size: 0.85rem; }
+            .ink-card { aspect-ratio: 3/4; }
+            .section-padding { padding: 40px 0; }
+            .nav-item:hover .submenu {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.2rem; }
+            .hero-title { font-size: 1.5rem; line-height: 1.3; }
+            .hero-subtitle { font-size: 0.85rem; letter-spacing: 2px; }
+            .hero-content { padding: 0 10px; }
+            h1 { font-size: 1.75rem; }
+            h2 { font-size: 1.5rem; }
+            .container { padding: 0 12px; }
+            .section-padding { padding: 30px 0; }
+            .nav-grid { grid-template-columns: 1fr; gap: 15px; }
+            .footer-content { gap: 20px; }
+            .btn-folk { padding: 10px 25px; font-size: 0.8rem; letter-spacing: 1px; }
+            .ink-card { aspect-ratio: 1/1.2; }
+            .copyright { font-size: 0.8rem; }
+            p { font-size: 0.95rem; }
+            .nav-menu { width: 90%; max-width: 300px; padding: 70px 20px 80px; }
+            .nav-link { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div id="guide-modal" class="guide-overlay">
+    <div class="guide-content">
+        <span class="guide-close" id="close-guide">&times;</span>
+        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1773935998/z7636219085973_70f782ab40bcdc738f1e1587c6732e3f_dt6rx3.jpg" alt="Hướng dẫn trải nghiệm">
+        <div class="guide-footer">
+            <button class="btn-folk" id="btn-start">Bắt đầu ngay</button>
+        </div>
+    </div>
+</div>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+            
+            <div class="nav-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="duan.html">Dự án</a></li>
+                
+                <li class="nav-item has-submenu">
+                    <a class="nav-link" href="javascript:void(0)">Trải nghiệm <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                        <li><a href="flipaclip.html">Phim hoạt hình và tranh</a></li>
+                        <li><a href="chatbot.html">Trợ lý ảo AI</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-submenu">
+                    <a class="nav-link" href="javascript:void(0)">Lân Sư Rồng <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                        <li><a href="taohinh.html">Tạo hình</a></li>
+                        <li><a href="giaothoa (1).html">Giao thoa</a></li>
+                        <li><a href="giaoduc.html">Giáo dục</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Về chúng mình</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        
+        <header class="hero">
+            <div class="hero-bg" id="parallax-bg"></div>
+            <div class="hero-content reveal active">
+                <span class="hero-subtitle">Di sản văn hóa phi vật thể</span>
+                <h1 class="hero-title">GIÁO DỤC DI&nbsp;SẢN <br> NGHỆ THUẬT LÂN&nbsp;SƯ&nbsp;RỒNG</h1>
+                <button class="btn-folk" onclick="window.location.href='vr.html'">VR Tour</button>
+            </div>
+        </header>
+
+        <section class="section-padding container" id="nav-grid-section">
+            <div class="text-center reveal">
+                <h2>Hành Trình Di Sản</h2>
+                <p style="margin-top: 15px; color: #666; font-style: italic;">Khám phá nét đẹp văn hóa truyền thống qua góc nhìn hiện đại</p>
+            </div>
+
+            <div class="nav-grid">
+                
+                <div class="ink-card reveal" onclick="window.location.href='nguongoc.html'">
+                    <div class="ink-card-img">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040221/Ni%C3%AAn02_Ngu%E1%BB%93n_g%E1%BB%91c_sixikr.jpg" alt="Nguồn gốc">
+                    </div>
+                    <div class="ink-card-content">
+                        <h3 class="ink-card-title">Nguồn Gốc</h3>
+                        <span class="ink-card-desc">Lịch sử & Huyền thoại</span>
+                    </div>
+                </div>
+
+                <div class="ink-card reveal" onclick="window.location.href='taohinh.html'">
+                    <div class="ink-card-img">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040218/64b836e8d9bd51f629a053403c33a9b6_vvvjgy.jpg" alt="Tạo hình">
+                    </div>
+                    <div class="ink-card-content">
+                        <h3 class="ink-card-title">Tạo Hình</h3>
+                        <span class="ink-card-desc">Mỹ thuật & Màu sắc</span>
+                    </div>
+                </div>
+
+                <div class="ink-card reveal" onclick="window.location.href='giaothoa (1).html'">
+                    <div class="ink-card-img">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769077005/L%C3%A2n16_yekqkv.jpg" alt="Văn hóa">
+                    </div>
+                    <div class="ink-card-content">
+                        <h3 class="ink-card-title">Giao Thoa</h3>
+                        <span class="ink-card-desc">Võ thuật & Tín ngưỡng</span>
+                    </div>
+                </div>
+
+                <div class="ink-card reveal" onclick="window.location.href='giaoduc.html'">
+                    <div class="ink-card-img">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769076130/z7457016406417_ae833bf679748279c1f7d564ca70efbb_bwq3nz.jpg" alt="Giáo dục">
+                    </div>
+                    <div class="ink-card-content">
+                        <h3 class="ink-card-title">Giáo Dục</h3>
+                        <span class="ink-card-desc">Đạo đức & Nhân cách</span>
+                    </div>
+                </div>
+
+                <div class="ink-card reveal" onclick="window.location.href='phanmem.html'">
+                    <div class="ink-card-img">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769228918/Kh%C3%B4ng_C%C3%B3_Ti%C3%AAu_%C4%90%E1%BB%81140_20260124111922_qkk6jq.jpg" alt="Phần mềm hỗ trợ">
+                    </div>
+                    <div class="ink-card-content">
+                        <h3 class="ink-card-title">Trải Nghiệm Số</h3>
+                        <span class="ink-card-desc">3D Scanning, 2D & AI</span>
+                    </div>
+                </div>
+
+                <div class="ink-card reveal" onclick="window.location.href='thuvien.html'">
+                    <div class="ink-card-img">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769077006/L%C3%A2n155_o5i1xz.jpg" alt="Thư viện">
+                    </div>
+                    <div class="ink-card-content">
+                        <h3 class="ink-card-title">Thư Viện</h3>
+                        <span class="ink-card-desc">Kho tàng dữ liệu</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">LÂN SƯ RỒNG</div>
+                    <p>Dự án số hóa và bảo tồn nghệ thuật biểu diễn truyền thống tại TP. Hồ Chí Minh.</p>
+                </div>
+                <div>
+                    <h4>Liên Hệ</h4>
+                    <p><i class="fas fa-envelope"></i> Email:hoangkhanhlinhvu36@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> Số điện thoại:0833260208</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                        Hợp tác nội dung và bảo trợ chuyên môn:<br>
+                        Liên đoàn Lân Sư Rồng Thành phố Hồ Chí Minh
+                    </p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Lion Dragon Dance Heritage Education. Designed with <span style="color: var(--c-yellow)">Oriental Soul</span>.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========================
+        // 1. MOBILE MENU & SUBMENU LOGIC
+        // ========================
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const dropdownToggles = document.querySelectorAll('.has-submenu > .nav-link');
+
+        // Toggle Mobile Menu
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Toggle Submenu on Mobile (Accordion style)
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) { // Chỉ chạy trên mobile/tablet
+                    e.preventDefault(); // Ngăn chuyển trang
+                    const parent = toggle.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+
+        // ========================
+        // 2. SCROLL EFFECTS
+        // ========================
+        const navbar = document.getElementById('navbar');
+        const parallaxBg = document.getElementById('parallax-bg');
+
+        function scrollToGrid() {
+            const grid = document.getElementById('nav-grid-section');
+            grid.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            // Navbar style change
+            if (scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Simple Parallax
+            if(parallaxBg) {
+                parallaxBg.style.transform = `translateY(${scrollY * 0.5}px)`;
+            }
+
+            revealOnScroll();
+        });
+
+        // ========================
+        // 3. REVEAL ANIMATION
+        // ========================
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('load', revealOnScroll);
+        // ========================
+// ========================
+// 4. LOGIC HIỂN THỊ HƯỚNG DẪN (LUÔN HIỆN KHI VÀO TRANG)
+// ========================
+document.addEventListener('DOMContentLoaded', () => {
+    const guideModal = document.getElementById('guide-modal');
+    const closeBtn = document.getElementById('close-guide');
+    const startBtn = document.getElementById('btn-start');
+    
+    // Bỏ qua kiểm tra localStorage, luôn cho hiện modal sau 1 giây
+    setTimeout(() => {
+        if (guideModal) {
+            guideModal.style.display = 'flex';
+            document.body.classList.add('modal-open');
+        }
+    }, 1000);
+
+    // Hàm đóng modal (chỉ ẩn đi, không lưu trạng thái "đã xem" nữa)
+    function closeGuide() {
+        guideModal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeGuide);
+    if (startBtn) startBtn.addEventListener('click', closeGuide);
+
+    // Đóng khi click ra ngoài vùng ảnh
+    guideModal.addEventListener('click', (e) => {
+        if (e.target === guideModal) closeGuide();
+    });
+});
+    </script>
+</body>
+</html>

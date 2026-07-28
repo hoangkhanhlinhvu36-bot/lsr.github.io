@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về Chúng Mình - Nghệ Thuật Lân Sư Rồng</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           STYLE ĐỒNG BỘ TOÀN HỆ THỐNG
+           ========================================= */
+        :root {
+            --c-black: #650303;
+            --c-ink: #271717;
+            --c-paper: #f9f9f7;
+            --c-accent: #8b0000;
+            --f-title: 'Playfair Display', serif;
+            --f-body: 'Lora', serif;
+            --trans-med: 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--f-body);
+            background-color: var(--c-paper);
+            color: var(--c-ink);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hiệu ứng Texture Giấy */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 9999;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-family: var(--f-title); font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; text-decoration: none; color: var(--c-black); }
+        
+        .nav-menu { display: flex; gap: 25px; list-style: none; }
+        .nav-link { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; color: var(--c-ink); position: relative; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--c-accent); font-weight: 700; }
+        .nav-link i { font-size: 0.7em; margin-left: 5px; transition: transform 0.3s; }
+        .nav-item:hover .nav-link i { transform: rotate(180deg); }
+
+        /* Dropdown Menu */
+        .nav-item-dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute; top: 100%; right: 0; background: white;
+            min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 2px solid var(--c-accent); padding: 10px 0; opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: 0.3s; list-style: none; border-radius: 0 0 4px 4px;
+        }
+        .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 12px 25px; text-decoration: none; color: #144102; font-size: 0.9rem; transition: 0.2s; border-left: 3px solid transparent; }
+        .dropdown-menu a:hover { background: #fafafa; color: var(--c-accent); border-left-color: var(--c-accent); padding-left: 30px; }
+
+        /* Mobile Toggle Icon */
+        .nav-toggle { display: none; font-size: 1.5rem; color: var(--c-ink); cursor: pointer; }
+
+        /* Header */
+        .article-header { margin-top: 120px; text-align: center; padding: 60px 0 40px; }
+        .category-tag { display: inline-block; border: 1px solid var(--c-black); padding: 5px 15px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 20px; }
+        .article-title { font-family: var(--f-title); font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+
+        /* Layout dàn trang About */
+        .about-wrapper { max-width: 1000px; margin: 0 auto 100px; display: flex; flex-direction: column; gap: 50px; }
+        
+        .about-content-row { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
+        .about-text { flex: 1; min-width: 350px; text-align: justify; font-size: 1.15rem; }
+        .about-image { flex: 1; min-width: 350px; position: relative; }
+        
+        /* Trang trí khung hình nghệ thuật */
+        .img-frame {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+            box-shadow: 10px 10px 0px rgba(139, 0, 0, 0.05);
+            transition: var(--trans-med);
+        }
+        .img-frame:hover { transform: translate(-5px, -5px); box-shadow: 15px 15px 0px rgba(139, 0, 0, 0.1); }
+        .img-frame img { width: 100%; height: auto; display: block; filter: grayscale(20%); }
+
+        .dropcap { float: left; font-family: var(--f-title); font-size: 5.5rem; line-height: 0.7; padding-right: 15px; padding-top: 10px; color: var(--c-accent); }
+        
+        .mission-box { 
+            background-color: #f0eee9; 
+            padding: 40px; 
+            border-left: 5px solid var(--c-accent);
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        /* Animation */
+        .fade-in { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        footer { background-color: var(--c-black); color: #f1f1f1; padding: 60px 0 30px; text-align: center; }
+        .footer-logo { color: white; font-family: var(--f-title); font-size: 1.5rem; margin-bottom: 15px; }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES
+           ========================================= */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background-color: var(--c-paper);
+                flex-direction: column; align-items: flex-start; justify-content: flex-start;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1); 
+                transition: right 0.4s ease;
+                padding: 80px 30px 100px 30px; 
+                overflow-y: auto;
+                gap: 0;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-toggle { display: block; z-index: 1001; }
+            
+            .nav-item-dropdown { 
+                width: 100%; 
+            }
+            .nav-link { font-size: 1.1rem; }
+            
+            .dropdown-menu {
+                position: static; opacity: 1; visibility: visible; 
+                transform: none; box-shadow: none; border: none;
+                background: transparent; min-width: 100%;
+                max-height: 0; overflow: hidden; padding: 0;
+                transition: max-height 0.4s ease; margin-top: 0;
+            }
+            
+            .nav-item-dropdown.open .dropdown-menu { 
+                max-height: 500px; 
+                margin-top: 10px; 
+            }
+            .nav-item-dropdown.open .nav-link i { transform: rotate(180deg); }
+
+            .dropdown-menu a {
+                padding-left: 15px;      
+                font-size: 1rem;         
+                background-color: rgba(0,0,0,0.03); 
+                border-bottom: 1px dashed rgba(0,0,0,0.05); 
+                border-left: none;
+            }
+            
+            .dropdown-menu a::before {
+                content: "•"; color: var(--c-accent); margin-right: 8px; font-size: 1.2rem;
+                line-height: 0; position: relative; top: 2px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-title { font-size: 2.5rem; }
+            .article-header { margin-top: 100px; padding: 40px 0 30px; }
+            .about-text, .about-image { min-width: 100%; }
+            .about-content-row { gap: 30px; }
+            .about-wrapper { gap: 30px; margin-bottom: 50px; }
+            .about-text { font-size: 1rem; }
+            .dropcap { font-size: 4rem; padding-right: 10px; }
+            .mission-box { padding: 30px; margin: 15px 0; }
+            .container { padding: 0 15px; }
+            .mission-box { padding: 25px; }
+            p { font-size: 0.95rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.2rem; }
+            .article-title { font-size: 1.8rem; }
+            .article-header { margin-top: 80px; padding: 30px 0 20px; }
+            .category-tag { font-size: 0.7rem; padding: 4px 10px; }
+            .container { padding: 0 12px; }
+            .about-text { font-size: 0.9rem; text-align: left; }
+            .dropcap { font-size: 3rem; padding-right: 8px; padding-top: 5px; line-height: 0.6; }
+            .mission-box { padding: 20px; margin: 10px 0; font-size: 0.95rem; }
+            .about-wrapper { gap: 25px; margin-bottom: 30px; }
+            .about-content-row { gap: 20px; }
+            .nav-menu { width: 90%; max-width: 300px; padding: 70px 20px 80px; }
+            .nav-link { font-size: 1rem; }
+            footer { padding: 40px 0 20px; }
+            .footer-logo { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+   <nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="logo">LÂN SƯ RỒNG</a>
+        
+        <div class="nav-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li><a class="nav-link" href="duan.html">Dự án</a></li>
+            
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Lân Sư Rồng <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="nguongoc.html">Nguồn gốc</a></li>
+                    <li><a href="taohinh.html">Tạo hình</a></li>
+                    <li><a href="giaothoa (1).html">Giao thoa</a></li>
+                    <li><a href="giaoduc.html">Giáo dục</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item-dropdown">
+                <a class="nav-link" href="javascript:void(0)">Trải Nghiệm <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="hdsdkiri.html">Mô hình 3D</a></li>
+                    <li><a href="flipaclip.html">Phim hoạt hình và tranh</a></li>
+                    <li><a href="chatbot.html">Trợ lý AI</a></li>
+                </ul>
+            </li>
+
+            <li><a class="nav-link" href="thuvien.html">Thư viện</a></li>
+            <li><a class="nav-link" href="about.html">Về chúng mình</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div style="height: 80px;"></div>
+
+    <main class="container">
+        <header class="article-header fade-in">
+            <span class="category-tag">Đội Ngũ & Sứ Mệnh</span>
+            <h1 class="article-title">VỀ CHÚNG MÌNH</h1>
+        </header>
+
+        <div class="about-wrapper">
+            
+            <section class="about-content-row fade-in" style="animation-delay: 0.2s;">
+                <div class="about-text">
+                    <p>
+                        <span class="dropcap">X</span>in chào, chúng mình là một tập thể những người yêu và gìn giữ nghệ thuật Lân Sư Rồng – một di sản văn hóa truyền thống giàu giá trị tinh thần và lịch sử. Với niềm đam mê võ thuật, âm nhạc và biểu diễn dân gian, chúng mình mong muốn tạo ra một môi trường học tập bài bản, hiện đại nhưng vẫn giữ được cốt lõi truyền thống.
+                    </p>
+                    <p style="margin-top: 20px;">
+                        Website học tập Lân Sư Rồng của dự án được xây dựng nhằm giúp người học ở mọi độ tuổi có thể tiếp cận kiến thức, kỹ thuật và tinh thần của bộ môn một cách dễ dàng và hiệu quả.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="img-frame">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769040223/Ngu%E1%BB%93n_g%E1%BB%91c_02_ztyqef.jpg" alt="Tập thể đội ngũ Lân Sư Rồng">
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-content-row fade-in" style="flex-direction: row-reverse; animation-delay: 0.4s;">
+                <div class="about-text">
+                    <div class="mission-box">
+                        Thông qua website học tập Lân Sư Rồng, chúng mình mong muốn góp phần gìn giữ và phát huy những giá trị tốt đẹp của nghệ thuật truyền thống trong giới trẻ.
+                    </div>
+                    <p>
+                        Mỗi bài múa không chỉ là kỹ thuật biểu diễn mà còn là tinh thần kỷ luật, đoàn kết và đam mê mà ông cha ta truyền dạy. Hãy cùng chúng mình xây dựng một cộng đồng học tập tích cực, nơi Lân Sư Rồng được tiếp nối và phát triển bền vững trong tương lai.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="img-frame">
+                        <img src="https://res.cloudinary.com/daqmrjubp/image/upload/v1769127137/z7458605288765_81923d9ca42439352cd156aab6b8817b_ax7rru.jpg" alt="Buổi trình bày đề tài của chúng mình">
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">LÂN SƯ RỒNG</div>
+            <p>&copy; 2026 Lion Dragon Heritage Education. Designed with Oriental Soul.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const dropdownToggles = document.querySelectorAll('.nav-item-dropdown > .nav-link');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Toggle Dropdown on Mobile
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    const parent = toggle.parentElement;
+                    parent.classList.toggle('open');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

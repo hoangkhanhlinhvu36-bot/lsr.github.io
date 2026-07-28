@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tour apprev="18043" start="node3" appversion="6.1.11">
+  <panorama id="node3">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node3/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="VR BT" customnodeid="" heading="0" latitude="10.776111" description="" datetime="3/12/2026 11:28 AM" title="Cửa 1" source="" copyright="" comment="" longitude="106.699692" nodeid="node3" altitude="15.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node1}" skinid="ht_node_arrow" distance="12.3548" target="-82.2/-5.5/70.0" description="" title="" pan="-354.09" tilt="-0.97"/>
+      <hotspot id="Point02" url="{node18}" skinid="ht_node_arrow" target="86.8/-1.1/70.0" description="" title="" pan="-279.09" tilt="-1.37"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node1">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node1/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="VR BT" customnodeid="" heading="0" latitude="10.776078" description="" datetime="3/12/2026 9:25 AM" title="Toàn cảnh 1" source="" copyright="" comment="" longitude="106.699800" nodeid="node1" altitude="-20.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node3}" skinid="ht_node_3d" distance="12.3548" target="179.9/-1.7/70.0" description="" title="" pan="-258.09" tilt="-5.67"/>
+      <hotspot id="Point02" url="{node2}" skinid="ht_node_arrow" distance="3.91651" target="2.9/-20.4/84.3" description="" title="" pan="-350.92" tilt="-2.15"/>
+      <hotspot id="Point03" url="" skinid="ht_info" target="" description="Loại hình múa lốt biểu trưng của cộng đồng người Hoa gốc Quảng Đông, dòng&#xa;Lân Phật Hạc với 2 nguyên mẫu được vẽ theo kiểu truyền thống với cụm 3 màu đen xanh đỏ truyền thống họạ tiết chi tiết và kiểu hiện đại với cụm hoa văn nét lớn màu sắc tươi tắn hơn như đỏ trắng vàng.&#xa;Đặc điểm nhận dạng dòng Lân Phật Hạc gồm sừng tròn, mắt to và dài, miệng Lân hơi cong nhẹ phía trước, hình dáng đầu Lân dài hơn, là sự kết hợp giữa nguyên mẫu Lân Phật Hạc và Hạc Sơn.&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773534094/z7621470063606_f2ae9c11e327e60398e6b13c478434df_wompnt.jpg&quot; style=&quot;width:fit-content&quot;>&#xa;&#xa;" title="LÂN PHẬT HẠC&#xa;" pan="-309.68" tilt="-4.31"/>
+      <hotspot id="Point04" url="" skinid="ht_info" target="" description="Loại hình múa lốt biểu trưng của cộng đồng người Hoa gốc Triều Châu, Sư Tử là một loại hình nghệ thuật dùng trong các hoạt động ca kịch và xiếc tạp kỹ.&#xa;Đặc điểm nhận dạng loài Sư Tử gồm đầu Sư được đúc bằng công nghệ composite hoặc giấy sau đó mới bắt đầu trang trí, đặt thù Sư Tử sau lưng có những xoắn ốc, không sừng, miệng to, lông cước dán đều nguyên con, phần đuôi có nhiều lớp trang phục để che đi người biểu diễn.&#xa;&#xa;&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773534093/z7621470048507_677d48915098cef00ca6ffc8c701938d_dlnout.jpg&quot; style=&quot;width:fit-content&quot;>&#xa;" title="SƯ TỬ&#xa;" pan="-25.24" tilt="-3.02"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node2">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node2/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="VR BT" customnodeid="" heading="0" latitude="10.776100" description="" datetime="3/12/2026 9:27 AM" title="Toàn cảnh 2" source="" copyright="" comment="" longitude="106.699772" nodeid="node2" altitude="-8.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node1}" skinid="ht_node_arrow" distance="3.91651" target="-176.3/-2.6/70.0" description="" title="" pan="-174.79" tilt="1.4"/>
+      <hotspot id="Point02" url="{node7}" skinid="ht_node_arrow" distance="8.21857" target="-82.0/-12.1/70.0" description="" title="" pan="-6.82001" tilt="0.0500003"/>
+      <hotspot id="Point03" url="" skinid="ht_info" target="" description="Loại hình múa lốt biểu trưng của cộng đồng người Hoa gốc Phúc Kiến, Rồng là một loại hình nghệ thuật dùng trong các hoạt động lễ hội và biểu diễn phục vụ nhu cầu của người dân.&#xa;Đặc điểm Rồng truyền thống Kim Long Phúc Kiến gồm: kích thước Rồng to hơn các loại hình Rông của các cộng đồng khác, mình Rồng dài có thể múa từ 9 đến 11 đến 13 người, đầu Rồng tạo hình trán tròn, mắt cá, sừng nai, miệng dài, mang Rồng có xoắn ốc, đuôi Rồng theo tạo hình đuôi cá, thân Rồng dài được cán lụa kim tuyến tạo sự lấp lánh của vày Rồng, chỗ giao giữa tay cầm và thân Rồng được làm bằng lồng đan tre giúp Rông khi biểu diễn tạo cảm giác to lớn uyển chuyển và tròn trịa.&#xa;&#xa;" title="RỒNG TRUYỀN THỐNG KIM LONG PHÚC KIẾN&#xa;" pan="-355.34" tilt="-6.27"/>
+      <hotspot id="Point04" url="" skinid="ht_info" target="" description="Loại hình múa lốt biểu trưng của cộng đồng người Hoa gốc Phúc Kiến, Hầu là một linh vật với tạo hình từ loài hổ, có nơi gọi đây là linh vật Quy Xà Tướng Quân thường đi đầu trong các lễ rước cộ nhầm xua đuổi tà ma, dọn đường cho các kiệu nghinh thần xuất du.&#xa;Đặc điểm nhận dạng loài Hầu gồm dầu tròn được tạo hình từ phôi giấy, phôi composite được trang trí đa sắc, thể hiện sự uy nghi, hung dữ, đuôi được làm bằng vải, phần đuôi có cột một chiếc đuôi bò phơi khô.&#xa;&#xa;" title="HẨU" pan="-328.35" tilt="-2.25"/>
+      <hotspot id="Point05" url="{node19}" skinid="ht_node_arrow" distance="8.29749" target="1.9/-6.0/70.0" description="" title="" pan="-280.93" tilt="11.36"/>
+      <hotspot id="Point06" url="{node9}" skinid="ht_node_arrow" target="10.5/2.3/70.0" description="" title="" pan="-85.63" tilt="18.35"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node18">
+    <input height="720" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node18/cf_%c/l_%l/c_%x/tile_%y.jpg" width="720" levelingroll="0" leveltilesize="510">
+      <level height="720" preload="0" width="720" predecode="0"/>
+      <level height="360" preload="1" width="360" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Program Files" customnodeid="" heading="0" latitude="" description="" datetime="" title="Nguồn gốc" source="" copyright="" comment="" longitude="" nodeid="node18" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node5}" skinid="ht_node_arrow" target="-86.8/-10.1/70.0" description="" title="" pan="-269.46" tilt="21.05"/>
+      <hotspot id="Point02" url="" skinid="ht_info" target="" description=" Vào những năm đầu thế kỷ 20, mùa Lân, Sư, Rồng theo chân các võ sư du nhập vào Chợ Lớn - Sài Gòn; các đoàn Lân, Sư, Rồng thường do các bạng hội người Hoa vùng Chợ Lớn bảo trợ. Khi mới hình thành, mỗi đoàn chỉ múa&#xa;chuyên biệt riêng về múa Lân hay múa Sư Tử hoặc múa Rồng. Ban đầu, biểu diễn Lân, Sư, Rông chỉ là một phần hoạt động của các võ đường. Sau đó, biểu diễn Lân, Sư, Rông trở thành hoạt động chính của các võ đường; và tập luyện võ thuật mang tính hỗ trợ cho múa Lân, Sư, Rồng. Nhiều đoàn Lân, Sư, Rông hoạt động tách biệt với võ đường. Theo đó, nghề chế tác Lân, Sư, Rồng cũng phát triển, đa dạng hoa sản phẩm theo nhu cầu của thị trường.&#xa;Nếu như trước kia, nghệ thuật Lân, Sư, Rồng chỉ biểu diễn vào các dip lễ hội, và các hoạt động khánh tiết, chào mừng đi cùng các hoạt động tạp kỹ, nhào lộn, nội công và khí công... Thì về sau, nghệ thuật Lân, Sư, Rồng còn đi vào các hoạt động ca múa nhạc và thi đầu chuyên nghiệp. Bên cạnh những bài múa Lân, Sư, Rồng truyền thống các đoàn Lân, Sư, Rồng đã có những sáng tạo như thêm vào các yếu tố yêu nước, cách mạng, dân gian Việt Nam... trong biểu diễn.&#xa;Cũng như kết hợp yếu tố truyền thống đi cùng kỹ thuật hiện đại như ứng dụng màu sắc dạ quang trong các tiết mục&#xa;&quot;Dạ quang Lân&quot;, &quot;Dạ quang Long...&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488978/z7620390891804_b1f150652c47720abd063c1ffa5df312_kerwtu.jpg&quot; style=&quot;width:100%&quot;>" title="LỊCH SỬ NGHỆ THUẬT MÚA LÂN, SƯ, RỒNG CỦA NGƯỜI HOA Ở THÀNH PHỐ HỒ CHÍ MINH" pan="-176.37" tilt="5.27"/>
+      <hotspot id="Point03" url="{node19}" skinid="ht_node_arrow" target="-0.6/-39.6/49.1" description="" title="" pan="-176.48" tilt="19.23"/>
+      <hotspot id="Point04" url="{node3}" skinid="ht_node_arrow" target="4.9/-2.0/70.0" description="" title="" pan="-90.06" tilt="6.35"/>
+      <hotspot id="Point05" url="" skinid="ht_info" target="" description="" title="Ảnh sưu tầm" pan="-222.17" tilt="-15.36"/>
+      <hotspot id="Point06" url="{node2}" skinid="ht_node_arrow" target="4.6/-10.0/70.0" description="" title="" pan="0.79" tilt="7.9"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node19">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node19/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776053" description="" datetime="3/12/2026 10:13 AM" title="Ảnh 1" source="" copyright="" comment="" longitude="106.699831" nodeid="node19" altitude="6.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node5}" skinid="ht_node_arrow" distance="77.4385" target="-84.6/-2.0/70.0" description="" title="" pan="-96.34" tilt="0.53"/>
+      <hotspot id="Point02" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536350/233A0782-1770430740_d5mdwo.webp&#xa;" use3D="0" skinid="ht_image" customimagewidth="10" target="" description="Đoàn kịch Nam Kỳ - Đông Dương tham dự Hội chợ thuộc địa, diễn ra ở Paris (Pháp) năm 1931. Trong ảnh, nhóm người mặc trang phục sân khấu truyền thống của một gánh hát, phía sau là đầu rồng dài nhiều khúc.&#xa;&#xa;&#xa;&#xa;" distance3D="57.1503" title="" customimageheight="8" pan="-350.42" tilt="-39.06" fov="10" customimage="media/233A0782-1770430740_d5mdwo.webp&#xa;"/>
+      <hotspot id="Point03" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773535793/%E1%BA%A2nh_s%C6%B0u_t%E1%BA%A7m_L%E1%BB%85_r%C6%B0%E1%BB%9Bc_r%E1%BB%93ng_-_%E1%BA%A2nh_1_k7deub.webp" use3D="0" skinid="ht_image" customimagewidth="10" target="" description="Bài báo với tranh vẽ chú thích Đám rước rồng ở Sài Gòn. Nội dung bài viết nói về giai đoạn biến động chính trị tại Việt Nam thời Pháp thuộc vào khoảng năm 1860 - 1865, về việc phế truất vua Hàm Nghi (1888) và lập vua Đồng Khánh, sau đó là vua Thành Thái. Đám rước rồng diễn ra ở bên sông Sài Gòn, tương ứng với Bến Bạch Đằng ngày nay.&#xa;&#xa;" distance3D="57.1503" title="" customimageheight="8" pan="-8.13" tilt="-40.38" fov="10" customimage="media/%E1%BA%A2nh_s%C6%B0u_t%E1%BA%A7m_L%E1%BB%85_r%C6%B0%E1%BB%9Bc_r%E1%BB%93ng_-_%E1%BA%A2nh_1_k7deub.webp"/>
+      <hotspot id="Point04" url="" skinid="ht_info" target="" description="" title="Nghệ thuật chế tác đầu Lân" pan="-59.25" tilt="11.41"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node5">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node5/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.775764" description="" datetime="3/12/2026 11:20 AM" title="Chế tác đầu Lân" source="" copyright="" comment="" longitude="106.699186" nodeid="node5" altitude="10.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node23}" skinid="ht_node_arrow" distance="71.6313" target="-89.3/0.3/70.0" description="" title="" pan="-86.65" tilt="5.41"/>
+      <hotspot id="Point02" url="" skinid="ht_info" target="" description="Các công đoạn chế tác Lân, Rồng Chọn vật liệu khung (mây, tre): chọn những sợi tròn, dẻo dai&#xa;Lên khung chính: uốn tùy theo kích thước đầu Lân, Rồng muốn làm, làm phần khung ngang trước, khung dọc sau&#xa;- Lên khung phần mắt, tai, lưỡi&#xa;- Công đoạn dán mùng: dùng keo sữa để dán vải mùng lên khung&#xa;- Công đoạn dán giấy: dán giấy (bôi) căng, không được chùng trên nền vải mùng, sau đó phơi khô&#xa;- Công đoạn vẽ, sơn màu: lựa chọn màu sắc, chi tiết hoa văn, pha màu tươi sáng, rực rỡ rồi vẽ lên đầu Lân, Rồng đã bồi&#xa;- Công đoạn trang trí, thêm chi tiết: lên lông, mắt, mũi, mày, râu; trang trí cho đầu Lân, đầu Rồng, gắn thêm lục lạc, buộc dây kéo để Lân có thể chớp mắt...&#xa;- Công đoạn may thân, đuôi: lựa chọn vải, chỉ ngũ sắc, chỉ kim tuyến, may thân, đuôi, gắn kim sa, thêu thêm chi tiết cho đuôi Lân, Rồng&#xa;&#xa;" title="Chế tác Lân, Rồng" pan="-334.35" tilt="37.74"/>
+      <hotspot id="Point03" url="" skinid="ht_info" target="" description="1. Tạo hình khung cho đầu Lân&#xa;2. Bồi giấy&#xa;3. Vẽ trang trí trên đầu Lân&#xa;4. Kiểm tra, gia cố đầu Lân&#xa;5. May thân Lân&#xa;6. Đầu Lân thành phẩm&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773592251/z7624054438140_3edff68a4725473a0204f4a77dc664ba_i1uh9w.jpg&quot; style=&quot;width:100%&quot;>" title="Tạo tác lốt Lân" pan="-17.05" tilt="18.6"/>
+      <hotspot id="Point04" url="" skinid="ht_info" target="" description="Đầu Lân Phật Sơn: miệng cong, trán cao, sừng nhọn&#xa;Lân múa theo phái Phật Sơn thuộc hổ báo hình, được múa mô phỏng theo cử chỉ điệu bộ của loài hổ, loài báo nên động tác mạnh mẽ, oai phong.&#xa;Đặc điểm:&#xa;- Tên thường gọi: Lân mỏ dảnh&#xa;- Sừng: Nhọn, xoắn ốc&#xa;- Kiểu múa: Hổ báo hình&#xa;- Mô phỏng: con hổ, sư tử&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488977/z7620391047429_74e83e5862d13a4be25c126614e6d584_nnxtsd.jpg&quot; style=&quot;width:100%&quot;>" title="Đầu Lân Phật Sơn" pan="-332.33" tilt="-6.06"/>
+      <hotspot id="Point05" url="" skinid="ht_info" target="" description="Lân Hạc Sơn: miệng tròn, mũi nhỏ, trán thấp, sừng cong tròn&#xa;Lân múa theo phái Hạc Sơn thuộc miêu hình, được mô phỏng theo hình dáng và hành động của loài mèo động tác nhanh nhẹn, nhẹ nhàng.&#xa;Đặc điểm:&#xa;- Tên thường gọi: Lân mỏ tròn&#xa;- Sừng: tròn, nắm đấm&#xa;- Kiểu múa: miêu hình&#xa;- Mô phỏng: con mèo&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488978/z7620391017711_9780a8a93cfb753385bf26bcb9d0feae_aajhk0.jpg&quot; style=&quot;width:100%&quot;>" title="Đầu Lân Hạc Sơn" pan="-16.22" tilt="-18.04"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node23">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node23/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776142" description="" datetime="3/12/2026 9:46 AM" title="Các loại đầu Lân &amp; Chế tác lốt Sư TƯ" source="" copyright="" comment="" longitude="106.699717" nodeid="node23" altitude="0.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node8}" skinid="ht_node_arrow" distance="12.5151" target="89.1/-1.5/70.0" description="" title="" pan="-91.39" tilt="7.65"/>
+      <hotspot id="Point02" url="{node13}" skinid="ht_node_arrow" distance="63.7435" target="177.5/-49.1/70.0" description="" title="" pan="-33.6" tilt="6.2"/>
+      <hotspot id="Point03" url="" skinid="ht_info" target="" description="Lốt Sư Từ có phần đầu cách điệu còn phần thân kết bằng dây tơ hay dây nylon xé tưa ra thành sợi giả làm lông&#xa;Sư Tử. Có hai loại lốt:&#xa;1/Sư Từ lớn do hai vũ công đảm nhận, một người múa đầu, một người múa đuôi như múa Lân;&#xa;2/Sư Tử nhỏ do một người vũ công múa đơn: lốt trùm cả người và hai tay hóa trang làm đôi chân trước và hai chân làm đôi chân sau.&#xa;Đầu lốt Sư Tử do có hàm rời nên được làm bằng giấy bồi. Sau khi khuôn đầu Sư Tử được tạo tác hoàn chỉnh, người nghệ nhân bắt đầu thực hiện công đoạn quét hồ, dán những lớp giấy trắng xé nhỏ ra để bổi dần dần lên khuôn.&#xa;Sau khi bồi xong, đem phơi khô để có độ cứng. Rồi tô vẽ các chi tiết, hoa văn, a gắn lông, mày, râu... để hoàn thiện. Đó là đầu lốt Sư Tử truyền thống. Ngày nay, đầu lốt Sư Tử được đổ từ nhựa composite.&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488979/z7620391109325_97f9596893ccd9f82f021df4e50b0580_sulbk2.jpg&quot; style=&quot;width:100%&quot;>" title="Chế tác lốt Sư tử" pan="-329.88" tilt="16.7"/>
+      <hotspot id="Point04" url="" skinid="ht_info" target="" description="Đầu Lân Mengkok còn gọi là Lofochi: miệng cong, trán cao, sừng nhọn; con mắt nhìn to hơn lân Phật Sơn; mẫu vẽ Lân Mengkok rất đặc trưng, đặc biệt chỗ má Lân có 3 vây nhọn lên;&#xa;Mẫu Lân này có 3 trán tượng trưng cho: trời, đất và con người.&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488974/z7620390823079_fd485d1205177645064cb0f81e5b9598_ufrlxh.jpg&quot; style=&quot;width:100%&quot;>" title="Đầu Lân Mengkok" pan="-19.41" tilt="35.11"/>
+      <hotspot id="Point05" url="" skinid="ht_info" target="" description="Lân Ngũ Tố có những đặc trưng của Lân Phật Sơn&#xa;Lân Ngũ Tố có nét đặc trưng miệng Ngũ Tố gom nhỏ ở phía đầu, mắt tháp hơn dài ra như mắt của con chó sói, trán cao có 3 cải gương, đại diện cho bầu trời, mặt đất và con người.&#xa;Đặc điểm&#xa;- Sừng của Lân có 2 cái sừng nhỏ ở hai bên, lưng thẳng đứng lên.&#xa;- Mắt Lân theo 2 màu: trắng và đen. Tròng mắt theo tông màu đầu Lân&#xa;- Hoa văn được sử dụng là màu: đen, vàng đồng, xanh non.&#xa;- Hoa văn trên đầu Lân là những hoa văn xoáy từ trong ra ngoài.&#xa;- Châu Lân cũng phải cùng màu với đầu Lân.&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488978/z7620390891804_b1f150652c47720abd063c1ffa5df312_kerwtu.jpg&quot; style=&quot;width:100%&quot;>" title="Đầu Lân Ngũ Tổ" pan="-356.63" tilt="52.99"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node13">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node13/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776475" description="" datetime="3/12/2026 10:40 AM" title="Ảnh trưng bày 2" source="" copyright="" comment="" longitude="106.699242" nodeid="node13" altitude="44.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536184/%E1%BA%A2nh_m%C3%BAa_L%C3%A2n_t%E1%BA%A1i_Ch%E1%BB%A3_L%E1%BB%9Bn_2_biv6ej.webp" use3D="0" skinid="ht_image" customimagewidth="0" target="" description="ức ảnh được chụp khoảng thập niên 1900, ghi lại cảnh múa lân, rước rồng của cộng đồng người Hoa ở Chợ Lớn. Trong ảnh đoàn rước lân rồng đi đầu, theo sau là đội trống, chiêng, cờ trong trang phục truyền thống.&#xa;&#xa;" distance3D="0" title="" customimageheight="0" pan="-145.27" tilt="-46.7" fov="10" customimage="media/%E1%BA%A2nh_m%C3%BAa_L%C3%A2n_t%E1%BA%A1i_Ch%E1%BB%A3_L%E1%BB%9Bn_2_biv6ej.webp"/>
+      <hotspot id="Point02" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536349/233A0808-1770431234_fbcrhg.webp" use3D="0" skinid="ht_image" customimagewidth="1920" target="" description="Người biểu diễn chuẩn bị cho tiết mục múa rồng của đoàn nghệ thuật An Nam tại Hội chợ thuộc địa ở Paris (Pháp) năm 1931.&#xa;&#xa;" distance3D="10972.9" title="" customimageheight="2560" pan="-150.4" tilt="-41.04" fov="10" customimage="media/233A0808-1770431234_fbcrhg.webp"/>
+      <hotspot id="Point03" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536353/233A0795-1770430222_lyhda2.webp" use3D="0" skinid="ht_image" customimagewidth="0" target="" description="Đoàn múa lân - sư - rồng trên đường phố sài Gòn, khoảng năm 1921.&#xa;&#xa;" distance3D="0" title="" customimageheight="0" pan="-145.03" tilt="-32.55" fov="10" customimage="media/233A0795-1770430222_lyhda2.webp"/>
+      <hotspot id="Point04" url="" use3D="0" skinid="ht_image" customimagewidth="1920" target="" description="Bức ảnh được chụp khoảng thập niên 1900, ghi lại cảnh múa lân, rước rồng của cộng đồng người Hoa ở Chợ Lớn. Trong ảnh đoàn rước lân rồng đi đầu, theo sau là đội trống, chiêng, cờ trong trang phục truyền thống.&#xa;&#xa;" distance3D="10972.9" title="" customimageheight="2560" pan="-177.57" tilt="-45.77" fov="10" customimage="media/233A0803-1770428735-1770429070_zwvwbs.webp"/>
+      <hotspot id="Point05" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536353/233A0788-1770429805_ztcppt.webp&#xa;" use3D="0" skinid="ht_image" customimagewidth="0" target="" description="Một lễ rước rồng ở Chợ Lớn khoảng năm 1900 - 1910. Đám rước thu hút đông đảo người dân hai bên đường, phản ánh sinh hoạt lễ hội sôi động của cộng đồng người Hoa thời thuộc địa." distance3D="0" title="" customimageheight="0" pan="-125.78" tilt="-41.74" fov="10" customimage="media/233A0788-1770429805_ztcppt.webp&#xa;"/>
+      <hotspot id="Point06" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536184/%E1%BA%A2nh_s%C6%B0u_t%E1%BA%A7m_xem_m%C3%BAa_r%E1%BB%93ng_2_fsqzr2.webp" use3D="0" skinid="ht_image" customimagewidth="0" target="" description="Người dân xem múa rồng vào đầu thế kỷ 20 trên đường Charner (nay là đường Nguyễn Huệ) tại Sài Gòn. Con rồng trong ảnh dài khoảng 50 m với trên 25 người múa.&#xa;&#xa;" distance3D="0" title="" customimageheight="0" pan="-133.58" tilt="-38.33" fov="10" customimage="media/%E1%BA%A2nh_s%C6%B0u_t%E1%BA%A7m_xem_m%C3%BAa_r%E1%BB%93ng_2_fsqzr2.webp"/>
+      <hotspot id="Point07" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536353/233A0793-1770430110-1770430584_jbx9nk.webp" use3D="0" skinid="ht_image" customimagewidth="0" target="" description="Bức ảnh (không rõ địa điểm) chụp cảnh lễ hội đông vui, nhộn nhịp với những con rồng cỡ lớn di chuyển trên đường phố, khoảng đầu thế kỷ 20.&#xa;&#xa;&#xa;&#xa;" distance3D="0" title="" customimageheight="0" pan="-139.31" tilt="-34.79" fov="10" customimage="media/233A0793-1770430110-1770430584_jbx9nk.webp"/>
+      <hotspot id="Point09" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773536352/233A0791-1770430119-1770430584_kf1uzb.webp" use3D="0" skinid="ht_image" customimagewidth="1920" target="" description="Bức ảnh (không rõ địa điểm) chụp cảnh lễ hội đông vui, nhộn nhịp với những con rồng cỡ lớn di chuyển trên đường phố, khoảng đầu thế kỷ 20.&#xa;&#xa;" distance3D="10972.9" title="" customimageheight="2560" pan="-154.94" tilt="-35.96" fov="10" customimage="media/233A0791-1770430119-1770430584_kf1uzb.webp"/>
+      <hotspot id="Point10" url="{node8}" skinid="ht_node_arrow" distance="75.6676" target="85.7/1.2/70.0" description="" title="" pan="-288.91" tilt="70.75"/>
+      <hotspot id="Point08" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773535787/%E1%BA%A2nh_s%C6%B0u_t%E1%BA%A7m_c%C3%B3_m%C3%A0u_2_raccgm.webp" use3D="0" skinid="ht_image" customimagewidth="1920" target="" description=" Hình vẽ khắc họa cảnh múa rồng trên đường phố Sài Gòn vào đầu thế kỷ 20, của họa sĩ Henri Gervese. Ảnh được in trong tấm bưu ảnh mà ông Nguyễn Đại Hùng Lộc sưu tập được." distance3D="10972.9" title="" customimageheight="2560" pan="-176.14" tilt="-53.47" fov="10" customimage="media/%E1%BA%A2nh_s%C6%B0u_t%E1%BA%A7m_c%C3%B3_m%C3%A0u_2_raccgm.webp"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node8">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node8/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776050" description="" datetime="3/12/2026 10:43 AM" title="Các loại đầu Rồng" source="" copyright="" comment="" longitude="106.699783" nodeid="node8" altitude="16.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node16}" skinid="ht_node_arrow" distance="43.2322" target="-0.5/2.4/70.0" description="" title="" pan="-272.81" tilt="4.13"/>
+      <hotspot id="Point02" url="images/unnamed.jpg" skinid="ht_image" target="" description="" title="Đầu Rồng Ba lá" pan="-196.8" tilt="45.36"/>
+      <hotspot id="Point03" url="https://res.cloudinary.com/daqmrjubp/image/upload/v1773642214/z2199951244465-3b3803e8b8907cbb9ff7e0a2d7ed55e4_axfqkz.webp" skinid="ht_image" target="" description="" title="Đầu Rồng mặt chim" pan="-160.39" tilt="34.94"/>
+      <hotspot id="Point04" url="" skinid="ht_info" target="" description="Ông Địa giữ chức năng phụ diễn các trò hài hước trong múa Lân.&#xa;Ông Địa múa Lân đeo mặt nạ tròn đầy đặn, miệng cười rộng ngoác đến mang tai, mắt lớn tươi vui, má lúm đồng tiền và một nốt ruồi duyên bên má.&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488975/z7620390762036_ff72e53dce69b2b55e8f6330474f6f0e_el0obj.jpg&quot; style=&quot;width:100%&quot;>" title="MẶT NẠ ÔNG ĐỊA" pan="-202.42" tilt="16.33"/>
+      <hotspot id="Point05" url="" skinid="ht_info" target="" description="&quot;Khai quang điểm nhãn” hay &quot;Khai quang điểm tinh&quot; được coi là cách làm phép cho cái lốt Lân, Sư, Rồng có được sự sống động như một sinh vật thật. Sau lễ này, các đội Lân, Sư, Rồng bắt đầu khai diễn.&#xa;- Trước tiên, bịt mắt Lân, Sư, Rồng bằng vải đỏ&#xa;- Lễ vật gồm: 1/Bùa bình an;2/Lệnh tiễn; 3/Châu sa pha với rượu; &#xa;4/Một củ gừng.&#xa;- Trình tự:&#xa;+ Các thành viên đội Lân, Sư, Rồng lên quỳ trước bàn thờ&#xa;+ Chủ đoàn Lân, Sư, Rồng hay nghệ nhân làm ra con Lân, Sư, Rồng thắp nhang &#xa;+ Tháo dải lụa đỏ bịt mắt Lân, Sư, Rồng &#xa;+ Dùng cọ sạch chấm vào châu sa vào củ gừng chấm vào trán, 2 mắt, 2 tay, miệng, sừng, lỗ tai, đi xuống thân mình, chân và đuôi.&#xa;+ Lấy bùa bình an dán vào ót.&#xa;+ Lấy lệnh tiền cột vào sừng (đây là mũi tên hiệu lệnh dán bùa bình an)&#xa;+ Trống đánh&#xa;+ Lân, Sư, Rồng sống dậy&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773642886/img_3236_tjdq8h.jpg&quot; style=&quot;width:100%&quot;>&#xa;" title="Khai quang điểm nhãn" pan="-196.68" tilt="-19.26"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node16">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node16/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776353" description="" datetime="3/12/2026 9:32 AM" title="Cửa 2" source="" copyright="" comment="" longitude="106.700031" nodeid="node16" altitude="-3.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node15}" skinid="ht_node_arrow" distance="30.59" target="0.0/0.0/70.0" description="" title="" pan="-356.72" tilt="2.26"/>
+      <hotspot id="Point02" url="{node10}" skinid="ht_node_arrow" target="12.1/2.4/70.0" description="" title="" pan="-310.12" tilt="2.98"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node10">
+    <input height="640" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node10/cf_%c/l_%l/c_%x/tile_%y.jpg" width="640" levelingroll="0" leveltilesize="510">
+      <level height="640" preload="0" width="640" predecode="0"/>
+      <level height="320" preload="1" width="320" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="" description="" datetime="" title="Cuối phòng (cờ)" source="" copyright="" comment="" longitude="" nodeid="node10" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node15}" skinid="ht_node_arrow" target="4.6/1.4/70.0" description="" title="" pan="-313.06" tilt="-0.66"/>
+      <hotspot id="Point02" url="{node16}" skinid="ht_node_arrow" target="176.3/0.0/70.0" description="" title="" pan="-15.59" tilt="-1.72"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node15">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node15/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776150" description="" datetime="3/12/2026 9:34 AM" title="Cửa 3" source="" copyright="" comment="" longitude="106.699842" nodeid="node15" altitude="-6.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point02" url="" skinid="ht_info" target="" description="" title="Kỹ thuật biểu diễn" pan="-46.54" tilt="4.75"/>
+      <hotspot id="Point03" url="" skinid="ht_info" target="" description="" title="Trong đời sống cộng đồng" pan="-61.13" tilt="5.12"/>
+      <hotspot id="Point04" url="{node22}" skinid="ht_node_arrow" distance="377.359" target="91.0/-4.9/70.0" description="" title="" pan="-75.07" tilt="-2.1"/>
+      <hotspot id="Point01" url="{node10}" skinid="ht_node_arrow" target="" description="" title="" pan="-167.66" tilt="13.36"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node22">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node22/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.773511" description="" datetime="3/12/2026 9:53 AM" title="Kỹ thuật biểu diễn" source="" copyright="" comment="" longitude="106.702014" nodeid="node22" altitude="86.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node15}" skinid="ht_node_arrow" distance="377.359" target="22.8/-5.0/70.0" description="" title="" pan="-92.83" tilt="-1.86"/>
+      <hotspot id="Point02" url="{node20}" skinid="ht_node_arrow" distance="377.09" target="0.8/3.8/70.0" description="" title="" pan="-324.1" tilt="1.53"/>
+      <hotspot id="Point03" url="{node14}" skinid="ht_node_arrow" distance="383.08" target="1.1/-13.0/70.0" description="" title="" pan="-26.48" tilt="1.17"/>
+      <hotspot id="Point04" url="{node21}" skinid="ht_node_arrow" distance="144.334" target="" description="" title="" pan="-267.76" tilt="3.38"/>
+      <hotspot id="Point05" url="" skinid="ht_info" target="" description="Lân là biểu tượng cho sự bình an, thịnh vượng nên dân gian đã mô phỏng và tiến hành những màn trình diễn với đủ mâu sắc rực rỡ, điêu luyện không chỉ trên không và dưới đất. Múa Lân được chia thành hai loại hình chính là Thiên Tài - tức múa trên không, không chạm đất và Địa Bửu tức a múa diễn ra trên mặt đất." title="Múa Lân" pan="-200.31" tilt="26.42"/>
+      <hotspot id="Point06" url="" skinid="ht_info" target="" description="Nghệ thuật múa Sư Tử gồm:&#xa;1/Các động tác múa mô phỏng những hình thái hoạt động tự nhiên của loài mãnh thú này: đi, đứng, nằm, ngồi, chạy, nhảy, đuổi bắt, tranh giành, tiến, thoái, quay bên tả, sang bên hữu...&#xa;2/Các động tác tạp kỹ: dùng chân lăn quả banh sắt lớn theo tuyển đã định: hoặc bằng phẳng; hoặc lên/xuống dốc...., nhào lộn, lên đùi, chồng người, nhào lộn với quả cầu, lên mai hoa thung...&#xa;Múa Sư Tử truyền thống là múa đôi, tức một đôi vợ chồng Sư Tử và bầy con. Điệu múa Sư Tử cơ bản là điệu Sư Tử hí cầu. Đây là điệu múa sinh động, qui tụ toàn bộ gia đình Sư Tử, dưới sự dẫn lối của vũ công cầm trái tú cầu&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773488975/z7620390703378_cf16ad01a735f914bd389d7bdd40a7f8_qpu4v0.jpg&quot; style=&quot;width:100%&quot;>&#xa;" title="Múa Sư Tử" pan="-151.77" tilt="0.12"/>
+      <hotspot id="Point07" url="" skinid="ht_info" target="" description="" title="&quot;Lân đi cà kheo&quot; của đoàn Hằng Anh Đường " pan="-201.72" tilt="13.73"/>
+      <hotspot id="Point08" url="" skinid="ht_info" target="" description="" title="&quot;Lân trèo cây hái lộc&quot; của đoàn Nhơn Nghĩa Đường" pan="-151.79" tilt="23.25"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node21">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node21/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.773114" description="" datetime="3/12/2026 9:56 AM" title="Công nhận" source="" copyright="" comment="" longitude="106.700756" nodeid="node21" altitude="186.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node22}" skinid="ht_node_arrow" distance="144.334" target="-90.5/3.6/70.0" description="" title="" pan="-89.37" tilt="1.51"/>
+      <hotspot id="Point02" url="{node6}" skinid="ht_node_arrow" distance="343.65" target="" description="" title="" pan="-266.12" tilt="0.42"/>
+      <hotspot id="Point03" url="" skinid="ht_info" target="" description="" title="Trang phục múa Rồng của đoàn Kim Long Phúc Kiến " pan="-223.89" tilt="-1.57"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node6">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node6/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776067" description="" datetime="3/12/2026 10:56 AM" title="Lễ hội &amp; Sự kiện" source="" copyright="" comment="" longitude="106.699828" nodeid="node6" altitude="-7.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point02" url="{node21}" skinid="ht_node_arrow" distance="343.65" target="-88.6/-1.0/70.0" description="" title="" pan="-88.63" tilt="11.03"/>
+      <hotspot id="Point03" url="{node7}" skinid="ht_node_arrow" distance="6.07905" target="0.0/0.0/70.0" description="" title="" pan="-359.81" tilt="13.3"/>
+      <hotspot id="Point05" url="{node9}" skinid="ht_node_arrow" target="-76.6/3.3/70.0" description="" title="" pan="-268" tilt="3.56"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node9">
+    <input height="640" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node9/cf_%c/l_%l/c_%x/tile_%y.jpg" width="640" levelingroll="0" leveltilesize="510">
+      <level height="640" preload="0" width="640" predecode="0"/>
+      <level height="320" preload="1" width="320" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="" description="" datetime="" title="Thi đấu" source="" copyright="" comment="" longitude="" nodeid="node9" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point02" url="" skinid="ht_info" target="" description="" title="Tiết mục múa Dạ quang long " pan="-11.48" tilt="-10.45"/>
+      <hotspot id="Point03" url="{node2}" skinid="ht_node" target="4.3/-10.4/70.0" description="" title="" pan="-81.8" tilt="21.12"/>
+      <hotspot id="Point01" url="{node6}" skinid="ht_node_arrow" target="-88.2/1.9/70.0" description="" title="" pan="-258.92" tilt="11.48"/>
+      <hotspot id="Point04" url="" skinid="ht_info" target="_blank" description="" title="Trang phục múa Rồng của đoàn Kim Long Phúc Kiến" pan="-288.26" tilt="-4.28"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node7">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node7/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776028" description="" datetime="3/12/2026 10:49 AM" title="Thân rồng" source="" copyright="" comment="" longitude="106.699789" nodeid="node7" altitude="-2.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node2}" skinid="ht_node_arrow" distance="8.21857" target="-171.6/-14.1/70.0" description="" title="" pan="-82.49" tilt="-5.64"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node14">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node14/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776147" description="" datetime="3/12/2026 9:40 AM" title="Nhạc cụ " source="" copyright="" comment="" longitude="106.699756" nodeid="node14" altitude="32.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="" skinid="ht_info" target="" description="Xe trống, trống, chiêng, chập chõa: Đây là bộ dụng cụ không thể thiếu khi các đoàn Lân, Sư, Rồng xuất quân đi biểu diễn.&#xa;Xe trống: được làm từ sắt hàn khung gắn thêm bánh xe để đựng trống, chập choa và có một ví trí treo chiêng sắt bên phải của xe trống, thường xe trống được trang bị thêm hai cây cờ Thất Tinh để phân biệt các đoàn Lân, Sư, Rồng.&#xa;Trống: được làm từ thùng gỗ ép khung sau đó bọc da bằng da bò hoặc da trâu tùy kỹ năng người thợ làm trống mà tiếng trống có loại trầm có loại bồng khác nhau.&#xa;Chập Chõa: được làm bằng inox, trước đây được làm từ nhôm cán tròn gò tạo hình, sau công nghệ chuyển sang dùng inox hoặc đồng miếng để tạo hình.&#xa;Chiêng: được làm từ những tấm sắt cắt tròn hàn viền khung rồi đánh, tiếng chiêng có thanh hay không sẽ do tay nghề người thợ cơ khí, sau có sử dụng thêm chiêng được làm từ đồng đúc âm thanh vang hơn.&#xa;&#xa;&lt;img src=&quot;https://res.cloudinary.com/daqmrjubp/image/upload/v1773629667/z7599429191388_fee53226fa532ae024fe476d2c96a85e_dgdobh.jpg&quot; style=&quot;width:100%&quot;>" title="DÀN NHẠC GỖ BIỂU DIỄN LÂN, SƯ, RỒNG" pan="0.19" tilt="-21.17"/>
+      <hotspot id="Point02" url="{node20}" skinid="ht_node_arrow" distance="6.003" target="0.0/0.0/70.0" description="" title="" pan="-182.17" tilt="4.64"/>
+      <hotspot id="Point03" url="{node15}" skinid="ht_node_arrow" distance="9.40005" target="" description="" title="" pan="-87.2" tilt="6.46"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <panorama id="node20">
+    <input height="2976" levelbiashidpi="1.000" overlap="1" levelingpitch="0" levelbias="0.400" leveltileurl="tiles/node20/cf_%c/l_%l/c_%x/tile_%y.jpg" width="2976" levelingroll="0" leveltilesize="510">
+      <level height="2976" preload="0" width="2976" predecode="0"/>
+      <level height="1488" preload="0" width="1488" predecode="0"/>
+      <level height="744" preload="0" width="744" predecode="0"/>
+      <level height="372" preload="1" width="372" predecode="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start pan="0" projection="4" tilt="0" fov="70"/>
+      <flyin pan="0" projection="9" tilt="-90" fov="170"/>
+      <min pan="0" tilt="-90" fovpixel="2"/>
+      <max scaletofit="1" pan="360" fovfisheye="360" tilt="90" fovstereographic="270" fov="120"/>
+    </view>
+    <userdata author="" tags="Pano2VR6" customnodeid="" heading="0" latitude="10.776108" description="" datetime="3/12/2026 9:50 AM" title="Đuôi rồng " source="" copyright="" comment="" longitude="106.699794" nodeid="node20" altitude="-14.00" info=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label height="20" textalpha="1" border="1" textcolor="0x000000" background="1" bordercolor="0x000000" backgroundcolor="0xffffff" borderalpha="1" wordwrap="1" width="180" backgroundalpha="1" enabled="1" borderradius="1"/>
+      <polystyle handcursor="1" mode="0" bordercolor="0x0000ff" backgroundcolor="0x0000ff" borderalpha="1" backgroundalpha="0.25098"/>
+      <hotspot id="Point01" url="{node15}" skinid="ht_node_arrow" distance="7.02155" target="17.4/-0.1/70.0" description="" title="" pan="-35.55" tilt="2.3"/>
+      <hotspot id="Point02" url="{node14}" skinid="ht_node_arrow" distance="6.003" target="0.0/-16.7/64.2" description="" title="" pan="-352.21" tilt="3.68"/>
+    </hotspots>
+    <media/>
+    <transition zoomoutpause="1" type="crossdissolve" zoomin="0" zoomafteroutfov="20" zoomspeed="2" zoomfov="20" zoomafterinfov="90" blendcolor="0x000000" blendtime="1" zoomout="0" enabled="1" softedge="0"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control invertwheel="0" lockedwheel="0" contextfullscreen="1" dblclickfullscreen="0" lockedkeyboard="0" speedwheel="1" sensitivity="8" lockedkeyboardzoom="0" lockedmouse="0" simulatemass="1" rubberband="0" hideabout="0" invertcontrol="1" contextprojections="0"/>
+  </panorama>
+  <masternode>
+    <userdata author="" tags="" customnodeid="" heading="0" latitude="" description="" datetime="" title="" source="" copyright="" comment="" longitude="" nodeid="master" info=""/>
+  </masternode>
+</tour>
